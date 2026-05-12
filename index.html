@@ -3,75 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Acara</title>
+    <title>Undangan Pernikahan</title>
+    
+    <!-- Mengambil Font Elegan dari Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Library untuk Animasi Scroll (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        /* Ini adalah CSS untuk mengatur tampilan (warna, teks, posisi) */
+        /* Pengaturan Dasar */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcf9f6; /* Warna latar krem lembut */
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Tampilan Sampul (Cover) Depan */
+        #sampul {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            z-index: 9999;
+            text-align: center;
+            transition: top 1s ease-in-out; /* Animasi saat cover naik */
         }
-        .kartu-undangan {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 90%;
+
+        #sampul::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Efek gelap agar teks terbaca */
+            z-index: -1;
         }
-        h1 { color: #333; }
-        .nama-tamu {
+
+        #sampul h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 50px;
+            color: #d4af37; /* Warna emas */
+            margin: 0;
+        }
+
+        #sampul p, #sampul .tamu {
+            color: white;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #sampul .tamu span {
+            display: block;
             font-size: 24px;
             font-weight: bold;
-            color: #2c3e50;
-            margin: 20px 0;
+            margin-top: 5px;
+            color: #d4af37;
         }
-        .tombol-rsvp {
+
+        .btn-buka {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animasi Tombol Berdenyut */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* Isi Undangan (Disembunyikan awalnya) */
+        #isi-undangan {
+            display: none;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .judul-bagian {
+            font-family: 'Great Vibes', cursive;
+            font-size: 40px;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .kotak-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+        }
+
+        .btn-whatsapp {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 20px;
-            background-color: #25D366; /* Warna khas WhatsApp */
+            background-color: #25D366;
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Tombol Musik Melayang */
+        #kontrol-musik {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px; height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Ini adalah isi konten yang akan tampil di layar -->
-    <div class="kartu-undangan">
-        <p>Kepada Yth.</p>
-        <div class="nama-tamu" id="nama-tamu">Tamu Spesial</div>
-        
-        <h1>Undangan Syukuran</h1>
-        <p>Kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara kami yang akan diselenggarakan pada:</p>
-        
-        <p><strong>Hari/Tanggal:</strong> Sabtu, 25 Mei 2026<br>
-           <strong>Waktu:</strong> 10.00 WIB - Selesai<br>
-           <strong>Lokasi:</strong> Kediaman Kami</p>
+    <!-- AUDIO LATAR BELAKANG -->
+    <!-- Ganti 'link-lagu.mp3' dengan link file mp3 Anda atau file di folder yang sama -->
+    <audio id="lagu" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-        <!-- Tombol konfirmasi kehadiran via WhatsApp -->
-        <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mengonfirmasi%20akan%20Hadir%20pada%20acara%20syukuran." class="tombol-rsvp" target="_blank">Konfirmasi Kehadiran</a>
+    <!-- TOMBOL MUSIK MELAYANG -->
+    <button id="kontrol-musik" onclick="putarMusik()">🎵</button>
+
+    <!-- SAMPUL (COVER) -->
+    <div id="sampul">
+        <h1>Romeo & Juliet</h1>
+        <div class="tamu">
+            <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            <span id="nama-tamu">Tamu Spesial</span>
+        </div>
+        <button class="btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
-    <!-- Ini adalah JavaScript untuk menangkap nama tamu dari Link -->
+    <!-- ISI UNDANGAN UTAMA -->
+    <div id="isi-undangan">
+        
+        <!-- Bagian Mempelai -->
+        <div data-aos="fade-up" data-aos-duration="1500">
+            <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah pernikahan kami:</p>
+            <h2 class="judul-bagian">Romeo Montague</h2>
+            <p>Putra dari Bapak Fulan & Ibu Fulanah</p>
+            <p style="font-size: 24px;">&</p>
+            <h2 class="judul-bagian">Juliet Capulet</h2>
+            <p>Putri dari Bapak Fulan & Ibu Fulanah</p>
+        </div>
+
+        <br><br>
+
+        <!-- Bagian Acara -->
+        <div class="kotak-info" data-aos="zoom-in" data-aos-duration="1500">
+            <h2 class="judul-bagian">Resepsi Pernikahan</h2>
+            <p>Insya Allah akan diselenggarakan pada:</p>
+            <p><strong>Minggu, 20 Agustus 2026</strong><br>10.00 WIB - Selesai</p>
+            <p><strong>Gedung Serbaguna</strong><br>Jl. Sudirman No. 123, Kota Bahagia</p>
+            
+            <a href="https://maps.google.com" target="_blank" class="btn-whatsapp" style="background-color: #d4af37;">Buka Google Maps</a>
+        </div>
+
+        <!-- Bagian RSVP -->
+        <div class="kotak-info" data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="judul-bagian">Konfirmasi Kehadiran</h2>
+            <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mengonfirmasi%20akan%20Hadir." class="btn-whatsapp" target="_blank">RSVP via WhatsApp</a>
+        </div>
+
+        <p data-aos="fade-in">Terima Kasih,<br><strong>Romeo & Juliet</strong></p>
+
+    </div>
+
+    <!-- Script untuk Animasi (AOS) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Mengaktifkan efek animasi scroll
+        AOS.init();
+
+        // 1. Menangkap Nama Tamu dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
-        
         if (nama) {
-            // Mengganti tanda + atau %20 menjadi spasi agar rapi
             document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
         }
-    </script>
 
+        // 2. Fungsi Tombol Buka Undangan
+        let musik = document.getElementById("lagu");
+        let isPlaying = false;
+
+        function bukaUndangan() {
+            // Menggeser cover ke atas
+            document.getElementById("sampul").style.top = "-100vh";
+            
+            // Menampilkan isi undangan & tombol musik
+            setTimeout(() => {
+                document.getElementById("isi-undangan").style.display = "block";
+                document.getElementById("kontrol-musik").style.display = "block";
+                // Refresh AOS agar mendeteksi elemen baru
+                AOS.refresh();
+            }, 500);
+
+            // Memutar musik
+            musik.play();
+            isPlaying = true;
+            document.getElementById("kontrol-musik").innerText = "⏸"; // Ubah ikon ke pause
+        }
+
+        // 3. Fungsi Tombol Pause/Play Musik
+        function putarMusik() {
+            if (isPlaying) {
+                musik.pause();
+                document.getElementById("kontrol-musik").innerText = "🎵";
+                isPlaying = false;
+            } else {
+                musik.play();
+                document.getElementById("kontrol-musik").innerText = "⏸";
+                isPlaying = true;
+            }
+        }
+    </script>
 </body>
 </html>
