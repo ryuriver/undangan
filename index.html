@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan Ryu & Bhetri</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -75,7 +75,7 @@
 
         #isi-undangan { display: none; text-align: center; padding: 50px 20px; }
 
-        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 40px; color: #d4af37; margin-bottom: 20px; }
+        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: #d4af37; margin-bottom: 20px; }
 
         .kotak-info {
             background: white;
@@ -106,25 +106,12 @@
             cursor: pointer;
             margin-top: 10px;
         }
-
-        #kontrol-musik {
-            position: fixed; bottom: 20px; right: 20px;
-            background: #d4af37; color: white; border: none;
-            border-radius: 50%; width: 50px; height: 50px;
-            font-size: 20px; cursor: pointer; z-index: 1000; display: none;
-        }
     </style>
 </head>
 <body>
 
-    <audio id="lagu" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
-
-    <button id="kontrol-musik" onclick="putarMusik()">🎵</button>
-
     <div id="sampul">
-        <h1>Romeo & Juliet</h1>
+        <h1>Ryu & Bhetri</h1>
         <div class="tamu">
             <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
             <span id="nama-tamu">Tamu Spesial</span>
@@ -136,10 +123,10 @@
         
         <div data-aos="fade-up" data-aos-duration="1500">
             <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah pernikahan kami:</p>
-            <h2 class="judul-bagian">Romeo Montague</h2>
+            <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
             <p>Putra dari Bapak Fulan & Ibu Fulanah</p>
             <p style="font-size: 24px;">&</p>
-            <h2 class="judul-bagian">Juliet Capulet</h2>
+            <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
             <p>Putri dari Bapak Fulan & Ibu Fulanah</p>
         </div>
 
@@ -159,7 +146,6 @@
             
             <p><strong>Lokasi Acara</strong><br>Gedung Balai Buntar<br>Jl. Pangeran Natadirja, Jalan Gedang, Kec. Gading Cempaka, Kota Bengkulu</p>
             
-            <!-- Ganti href dengan link Google Maps lokasi asli Anda -->
             <a href="https://maps.app.goo.gl/contoh-link-bengkulu" target="_blank" class="btn-aksi">🗺️ Buka Google Maps</a>
         </div>
 
@@ -171,14 +157,14 @@
             <div class="rekening-box">
                 <p style="margin: 0;"><strong>Bank BCA</strong></p>
                 <h3 style="margin: 5px 0; color: #d4af37;" id="norek-bca">1234567890</h3>
-                <p style="margin: 0; font-size: 14px;">a.n. Romeo Montague</p>
+                <p style="margin: 0; font-size: 14px;">a.n. Ryu River Saputra</p>
                 <button class="btn-salin" onclick="salinTeks('norek-bca')">📋 Salin Rekening</button>
             </div>
 
             <div class="rekening-box">
                 <p style="margin: 0;"><strong>Bank Mandiri</strong></p>
                 <h3 style="margin: 5px 0; color: #d4af37;" id="norek-mandiri">0987654321</h3>
-                <p style="margin: 0; font-size: 14px;">a.n. Juliet Capulet</p>
+                <p style="margin: 0; font-size: 14px;">a.n. Bhetri Yurmarlina</p>
                 <button class="btn-salin" onclick="salinTeks('norek-mandiri')">📋 Salin Rekening</button>
             </div>
         </div>
@@ -190,7 +176,7 @@
             <a href="https://wa.me/6281234567890?text=Halo,%20saya%20mengonfirmasi%20akan%20Hadir." class="btn-aksi" style="background-color: #25D366;" target="_blank">📱 RSVP via WhatsApp</a>
         </div>
 
-        <p data-aos="fade-in">Terima Kasih,<br><strong>Romeo & Juliet</strong></p>
+        <p data-aos="fade-in">Terima Kasih,<br><strong>Ryu & Bhetri</strong></p>
 
     </div>
 
@@ -198,40 +184,23 @@
     <script>
         AOS.init();
 
+        // 1. Menangkap Nama Tamu dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
             document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
         }
 
-        let musik = document.getElementById("lagu");
-        let isPlaying = false;
-
+        // 2. Fungsi Tombol Buka Undangan
         function bukaUndangan() {
             document.getElementById("sampul").style.top = "-100vh";
             setTimeout(() => {
                 document.getElementById("isi-undangan").style.display = "block";
-                document.getElementById("kontrol-musik").style.display = "block";
                 AOS.refresh();
             }, 500);
-            musik.play();
-            isPlaying = true;
-            document.getElementById("kontrol-musik").innerText = "⏸";
         }
 
-        function putarMusik() {
-            if (isPlaying) {
-                musik.pause();
-                document.getElementById("kontrol-musik").innerText = "🎵";
-                isPlaying = false;
-            } else {
-                musik.play();
-                document.getElementById("kontrol-musik").innerText = "⏸";
-                isPlaying = true;
-            }
-        }
-
-        // Fungsi untuk menyalin nomor rekening
+        // 3. Fungsi untuk menyalin nomor rekening
         function salinTeks(idElemen) {
             var teks = document.getElementById(idElemen).innerText;
             navigator.clipboard.writeText(teks).then(function() {
