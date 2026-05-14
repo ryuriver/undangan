@@ -9,222 +9,206 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        :root {
+            --gold: #d4af37;
+            --cream: #fcf9f6;
+            --dark: #333;
+        }
+
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #fcf9f6;
-            color: #333;
+            background-color: #e5e5e5; /* Background luar agar pamflet menonjol */
+            color: var(--dark);
             overflow-x: hidden;
         }
 
-        /* --- COVER --- */
+        /* --- STYLE PAMFLET UMUM --- */
+        .pamflet {
+            background-color: var(--cream);
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Tekstur kertas */
+            border: 15px solid white;
+            outline: 2px solid var(--gold);
+            outline-offset: -10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* --- COVER (SAMPUL) --- */
         #sampul {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            background-position: center;
+            background: #d4af37; /* Warna dasar emas */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .pamflet-cover {
+            width: 90%;
+            max-width: 450px;
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
             text-align: center;
-            transition: top 1s ease-in-out;
         }
-        #sampul::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: -1;
+
+        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 45px; color: var(--gold); margin: 0; }
+        .sub-judul { letter-spacing: 3px; font-size: 12px; font-weight: 600; margin-bottom: 20px; color: #888; }
+
+        /* KOTAK TAMU (SAMPUL & ISI) */
+        .kotak-tamu {
+            margin: 25px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background: rgba(255,255,255,0.5);
+            border-radius: 8px;
+            width: 80%;
         }
-        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 50px; color: #d4af37; margin: 0; }
-        #sampul p, #sampul .tamu { color: white; font-size: 18px; margin-top: 10px; }
-        #sampul .tamu span { display: block; font-size: 24px; font-weight: bold; margin-top: 5px; color: #d4af37; }
+        .kotak-tamu p { margin: 0; font-size: 12px; color: #666; }
+        .kotak-tamu span { display: block; font-size: 20px; font-weight: bold; color: var(--dark); margin-top: 5px; }
 
         /* --- BUTTONS --- */
         .btn-aksi {
             display: inline-block;
             margin-top: 15px;
-            padding: 12px 25px;
-            background-color: #d4af37;
+            padding: 12px 30px;
+            background-color: var(--dark);
             color: white;
             text-decoration: none;
             border: none;
-            border-radius: 30px;
-            font-size: 14px;
+            border-radius: 5px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: 0.3s;
         }
-        .btn-buka { animation: pulse 2s infinite; margin-top: 30px; }
+        .btn-buka { animation: pulse 2s infinite; }
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        /* --- CONTENT --- */
-        #isi-undangan { display: none; text-align: center; padding: 50px 20px; }
-        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: #d4af37; margin-bottom: 20px; }
-        .kotak-info {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            max-width: 500px;
-            margin: 0 auto 40px auto;
-        }
-        hr.garis-pembatas { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
-
-        /* --- MAPS --- */
-        .map-container {
-            width: 100%;
-            height: 250px;
-            margin-top: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid #eee;
-        }
-
-        /* --- DOA BOX (DI LUAR MODAL) --- */
-        .doa-box {
-            background: #fdfaf0;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-style: italic;
-            border-left: 4px solid #d4af37;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        /* --- MODAL BOX (UCAPAN) --- */
-        .modal {
+        /* --- ISI UNDANGAN --- */
+        #isi-undangan {
             display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
         }
+
+        .pamflet-konten {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 15px; }
+        hr.hias { border: 0; border-top: 1px solid var(--gold); width: 50px; margin: 20px auto; }
+
+        /* --- MAPS & MODAL --- */
+        .map-container { width: 100%; height: 250px; margin: 15px 0; border-radius: 5px; overflow: hidden; border: 1px solid #ddd; }
+        
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
         .modal-content {
-            background-color: #fff;
+            background: var(--cream);
             margin: 2vh auto;
-            padding: 25px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            height: 90vh; /* Tinggi hampir penuh layar */
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            padding: 20px;
+            width: 90%; max-width: 500px;
+            height: 96vh;
+            border-radius: 10px;
+            display: flex; flex-direction: column;
             box-sizing: border-box;
         }
-        .close-modal {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-            z-index: 10001;
-        }
-        
-        /* Area scroll didalam modal */
-        .modal-body {
-            overflow-y: auto;
-            flex-grow: 1;
-            padding-right: 5px;
-            text-align: left;
-        }
+        .modal-body { overflow-y: auto; flex-grow: 1; padding-right: 10px; }
     </style>
 </head>
 <body>
 
     <div id="sampul">
-        <h1>Ryu & Bhetri</h1>
-        <div class="tamu">
-            <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-            <span id="nama-tamu">Tamu Spesial</span>
+        <div class="pamflet pamflet-cover">
+            <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
+            <h1>Ryu & Bhetri</h1>
+            <div class="kotak-tamu">
+                <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
+                <span class="nama-tamu-display">Tamu Spesial</span>
+            </div>
+            <button class="btn-aksi btn-buka" onclick="bukaUndangan()">BUKA UNDANGAN</button>
         </div>
-        <button class="btn-aksi btn-buka" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
     <div id="isi-undangan">
         
-        <div data-aos="fade-up">
-            <p>Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah pernikahan kami:</p>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <div class="sub-judul">THE WEDDING OF</div>
             <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 24px;">&</p>
+            <p style="font-size: 20px; font-family: 'Great Vibes';">&</p>
             <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
+            
+            <div class="kotak-tamu" style="width: auto; margin: 20px auto; background: none; border-color: var(--gold);">
+                <p>Spesial Untuk:</p>
+                <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
+            </div>
+
+            <p style="font-size: 13px; line-height: 1.6;">"Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah kami menyatukan cinta dalam ikatan suci pernikahan."</p>
         </div>
 
-        <br><br>
-
-        <div class="kotak-info" data-aos="zoom-in">
-            <h2 class="judul-bagian">Waktu & Lokasi Acara</h2>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <h2 class="judul-bagian">Waktu & Lokasi</h2>
             <p><strong>Akad Nikah</strong><br>Jumat, 22 Mei 2026 | 08.00 WIB</p>
-            <hr class="garis-pembatas">
+            <hr class="hias">
             <p><strong>Resepsi Pernikahan</strong><br>Sabtu, 23 Mei 2026 | 10.00 WIB</p>
-            <hr class="garis-pembatas">
             <p><strong>Gedung Balai Buntar</strong><br>Kota Bengkulu</p>
             
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.026135832791!2d102.2926715750212!3d-3.804561543886567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e36b0058b76df47%3A0xf657c4331002264c!2sGedung%20Balai%20Buntar!5e0!3m2!1sid!2sid!4v1715654519000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="http://googleusercontent.com/maps.google.com/9" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            
-            <a href="https://maps.app.goo.gl/3A7fC6Y7RkX9QW9i7" target="_blank" class="btn-aksi">🗺️ Buka di Google Maps</a>
+            <a href="https://maps.app.goo.gl/...0" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ GOOGLE MAPS</a>
         </div>
 
-        <div class="kotak-info" data-aos="fade-up">
-            <h2 class="judul-bagian">Amplop Digital</h2>
-            <div class="rekening-box" style="background: #fcf9f6; padding: 15px; border-radius: 10px; border: 1px dashed #d4af37;">
-                <p><strong>Bank BCA</strong></p>
-                <h3 id="norek-bca">1234567890</h3>
-                <p>a.n. Ryu River Saputra</p>
-                <button class="btn-aksi" style="padding: 5px 15px; font-size: 12px;" onclick="salinTeks('norek-bca')">📋 Salin</button>
-            </div>
-        </div>
-
-        <div class="kotak-info" data-aos="fade-up">
-            <h2 class="judul-bagian">Ucapan & Doa</h2>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <h2 class="judul-bagian">Tanda Kasih</h2>
+            <p style="font-size: 13px; margin-bottom: 20px;">Doa Restu Anda merupakan karunia terindah bagi kami.</p>
             
-            <div class="doa-box">
-                <p style="font-weight: bold; margin-bottom: 5px;">Doa untuk Pengantin:</p>
+            <div style="border: 1px dashed var(--gold); padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                <p><strong>Bank BCA</strong><br><span id="norek-bca">1234567890</span><br>a.n Ryu River Saputra</p>
+                <button onclick="salinTeks('norek-bca')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 10px; padding: 5px 10px;">SALIN NO. REK</button>
+            </div>
+
+            <div style="background: #fdfaf0; padding: 15px; border-radius: 5px; font-size: 13px; font-style: italic; margin-bottom: 20px; text-align: left;">
                 "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
-                <small>(Semoga Allah memberkahimu dan menetapkan berkah atasmu, serta mengumpulkan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
+                <small>- HR. Abu Daud</small>
             </div>
 
-            <p>Berikan ucapan selamat dan doa restu Anda.</p>
-            <button class="btn-aksi" onclick="bukaModal()" style="background-color: #333;">✍️ Kirim & Lihat Ucapan</button>
+            <button class="btn-aksi" onclick="bukaModal()">✍️ ISI BUKU TAMU</button>
         </div>
 
-        <div class="kotak-info" data-aos="fade-up">
-            <h2 class="judul-bagian">Konfirmasi</h2>
-            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20akan%20Hadir." class="btn-aksi" style="background-color: #25D366;" target="_blank">📱 RSVP via WhatsApp</a>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <h2 class="judul-bagian">Terima Kasih</h2>
+            <p style="font-size: 13px;">Merupakan kehormatan bagi kami jika Anda berkenan hadir.</p>
+            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20akan%20Hadir." class="btn-aksi" style="background-color: #25D366;" target="_blank">📱 KONFIRMASI (RSVP)</a>
         </div>
 
-        <p>Terima Kasih,<br><strong>Ryu & Bhetri</strong></p>
     </div>
 
     <div id="modalUcapan" class="modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="tutupModal()">×</span>
-            <h2 class="judul-bagian" style="font-size: 28px; margin-top: 10px;">Buku Tamu</h2>
-            
+            <span style="align-self:flex-end; cursor:pointer; font-size: 24px;" onclick="tutupModal()">×</span>
+            <h2 class="judul-bagian" style="font-size: 28px; text-align: center;">Buku Tamu</h2>
             <div class="modal-body">
                 <form id="form-komentar">
-                    <input type="text" id="input-nama" placeholder="Nama Anda" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; box-sizing: border-box;">
-                    <textarea id="input-ucapan" placeholder="Tulis doa/ucapan..." required style="width:100%; padding:10px; height:80px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; box-sizing: border-box;"></textarea>
-                    <button type="submit" id="btn-kirim" class="btn-aksi" style="width:100%; background-color: #333;">Kirim Ucapan</button>
+                    <input type="text" id="input-nama" placeholder="Nama Anda" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; box-sizing:border-box;">
+                    <textarea id="input-ucapan" placeholder="Tulis ucapan/doa..." required style="width:100%; padding:12px; height:80px; margin-bottom:10px; border:1px solid #ddd; box-sizing:border-box;"></textarea>
+                    <button type="submit" id="btn-kirim" class="btn-aksi" style="width:100%;">KIRIM UCAPAN</button>
                 </form>
-
-                <hr class="garis-pembatas">
-                
-                <div id="daftar-komentar">
-                    <p style="text-align:center;">Memuat ucapan...</p>
-                </div>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                <div id="daftar-komentar"></div>
             </div>
         </div>
     </div>
@@ -233,50 +217,41 @@
     <script>
         AOS.init();
 
-        // 1. Nama Tamu
+        // Ambil nama tamu dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
-        if (nama) document.getElementById('nama-tamu').innerText = nama.replace(/\+/g, ' ');
+        if (nama) {
+            const elements = document.querySelectorAll('.nama-tamu-display');
+            elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
+        }
 
-        // 2. Buka Undangan + FULLSCREEN
+        // Buka Undangan + Fullscreen
         function bukaUndangan() {
-            // Minta Fullscreen
             let elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
-                elem.msRequestFullscreen();
-            }
+            if (elem.requestFullscreen) { elem.requestFullscreen(); }
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
 
-            document.getElementById("sampul").style.top = "-100vh";
+            document.getElementById("sampul").style.transform = "translateY(-100%)";
             setTimeout(() => {
                 document.getElementById("isi-undangan").style.display = "block";
+                window.scrollTo(0,0);
                 AOS.refresh();
-            }, 500);
+            }, 600);
         }
 
-        // 3. Modal Logic
+        // Modal Logic
         const modal = document.getElementById("modalUcapan");
-        function bukaModal() { 
-            modal.style.display = "block"; 
-            document.body.style.overflow = "hidden"; // Kunci scroll latar belakang
-            muatKomentar(); 
-        }
-        function tutupModal() { 
-            modal.style.display = "none"; 
-            document.body.style.overflow = "auto"; // Aktifkan kembali scroll
-        }
-        window.onclick = function(event) { if (event.target == modal) tutupModal(); }
+        function bukaModal() { modal.style.display = "block"; muatKomentar(); }
+        function tutupModal() { modal.style.display = "none"; }
 
-        // 4. Salin Rekening
+        // Salin Rekening
         function salinTeks(id) {
-            navigator.clipboard.writeText(document.getElementById(id).innerText);
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
             alert("Nomor rekening disalin!");
         }
 
-        // 5. Komentar Logic (Google Sheets)
+        // API Komentar (Pastikan URL Script Anda benar)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwVu3VyJD95Zpa49BIcWMIOMBG08BXCT42WOp_yUSyca4g7SBQJ876S4HQ4Mq9qm83WsQ/exec';
         
         function muatKomentar() {
@@ -285,7 +260,7 @@
                 list.innerHTML = '';
                 data.reverse().forEach(item => {
                     list.innerHTML += `<div style="border-bottom:1px solid #eee; margin-bottom:10px; padding-bottom:5px;">
-                        <strong style="color:#d4af37;">${item.nama}</strong><br><small style="line-height: 1.4;">${item.ucapan}</small></div>`;
+                        <strong style="color:var(--gold); font-size:14px;">${item.nama}</strong><br><small style="color:#555;">${item.ucapan}</small></div>`;
                 });
             });
         }
@@ -293,15 +268,13 @@
         document.getElementById('form-komentar').addEventListener('submit', e => {
             e.preventDefault();
             const btn = document.getElementById('btn-kirim');
-            btn.innerText = 'Mengirim...'; btn.disabled = true;
-            
+            btn.innerText = 'MENGIRIM...'; btn.disabled = true;
             const formData = new URLSearchParams();
             formData.append('nama', document.getElementById('input-nama').value);
             formData.append('ucapan', document.getElementById('input-ucapan').value);
-
             fetch(scriptURL, { method: 'POST', body: formData }).then(() => {
                 document.getElementById('form-komentar').reset();
-                btn.innerText = 'Kirim Ucapan'; btn.disabled = false;
+                btn.innerText = 'KIRIM UCAPAN'; btn.disabled = false;
                 muatKomentar();
             });
         });
