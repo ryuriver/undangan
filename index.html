@@ -169,6 +169,25 @@
             </div>
         </div>
 
+        <!-- BAGIAN UCAPAN & DOA -->
+        <div class="kotak-info" data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="judul-bagian">Ucapan & Doa</h2>
+            
+            <!-- Form Input -->
+            <form id="form-komentar" style="text-align: left;">
+                <input type="text" id="input-nama" placeholder="Nama Anda" required style="width: 100%; padding: 10px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px;">
+                <textarea id="input-ucapan" placeholder="Tulis ucapan atau doa..." required style="width: 100%; padding: 10px; height: 80px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                <button type="submit" id="btn-kirim" class="btn-aksi" style="width: 100%; background-color: #333;">Kirim Ucapan</button>
+            </form>
+
+            <hr class="garis-pembatas">
+
+            <!-- Tempat Menampilkan Komentar -->
+            <div id="daftar-komentar" style="text-align: left; max-height: 300px; overflow-y: auto; padding-right: 10px;">
+                <p style="text-align: center; color: #888;">Memuat ucapan...</p>
+            </div>
+        </div>
+
         <!-- BAGIAN RSVP -->
         <div class="kotak-info" data-aos="fade-up" data-aos-duration="1500">
             <h2 class="judul-bagian">Konfirmasi Kehadiran</h2>
@@ -209,6 +228,73 @@
                 alert("Gagal menyalin teks.");
             });
         }
+
+        // 4. Integrasi Komentar Google Sheets
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwVu3VyJD95Zpa49BIcWMIOMBG08BXCT42WOp_yUSyca4g7SBQJ876S4HQ4Mq9qm83WsQ/exec';
+        const formKomentar = document.getElementById('form-komentar');
+        const btnKirim = document.getElementById('btn-kirim');
+        const daftarKomentar = document.getElementById('daftar-komentar');
+
+        // Fungsi Menampilkan Komentar
+        function muatKomentar() {
+            fetch(scriptURL)
+            .then(response => response.json())
+            .then(data => {
+                daftarKomentar.innerHTML = ''; 
+                if (data.length === 0) {
+                    daftarKomentar.innerHTML = '<p style="text-align: center; color: #888;">Belum ada ucapan. Jadilah yang pertama!</p>';
+                    return;
+                }
+                
+                // Tampilkan dari yang paling baru (dibalik)
+                data.reverse().forEach(item => {
+                    let divKomentar = document.createElement('div');
+                    divKomentar.style.borderBottom = "1px solid #eee";
+                    divKomentar.style.paddingBottom = "10px";
+                    divKomentar.style.marginBottom = "10px";
+                    
+                    divKomentar.innerHTML = `
+                        <strong style="color: #d4af37;">${item.nama}</strong>
+                        <p style="margin: 5px 0 0 0; font-size: 14px;">${item.ucapan}</p>
+                    `;
+                    daftarKomentar.appendChild(divKomentar);
+                });
+            })
+            .catch(error => {
+                console.error('Error memuat komentar:', error);
+                daftarKomentar.innerHTML = '<p style="text-align: center; color: red;">Gagal memuat ucapan.</p>';
+            });
+        }
+
+        // Panggil fungsi muatKomentar saat web dibuka
+        muatKomentar();
+
+        // Fungsi Mengirim Komentar
+        formKomentar.addEventListener('submit', e => {
+            e.preventDefault();
+            btnKirim.innerText = 'Mengirim...';
+            btnKirim.disabled = true;
+
+            const namaData = document.getElementById('input-nama').value;
+            const ucapanData = document.getElementById('input-ucapan').value;
+
+            const formData = new URLSearchParams();
+            formData.append('nama', namaData);
+            formData.append('ucapan', ucapanData);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    formKomentar.reset();
+                    btnKirim.innerText = 'Kirim Ucapan';
+                    btnKirim.disabled = false;
+                    muatKomentar();
+                })
+                .catch(error => {
+                    alert('Gagal mengirim ucapan.');
+                    btnKirim.innerText = 'Kirim Ucapan';
+                    btnKirim.disabled = false;
+                });
+        });
     </script>
 </body>
 </html>
