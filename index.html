@@ -10,48 +10,50 @@
 
     <style>
         :root {
-            --gold: #d4af37;
-            --cream: #fcf9f6;
-            --dark: #333;
+            --gold: #c5a059;
+            --cream: #ffffff;
+            --bg-page: #f4f4f4;
+            --bg-landing: #e2e7d8; /* Soft Sage Green */
+            --dark: #4a4a4a;
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #e5e5e5; /* Background luar agar pamflet menonjol */
+            background-color: var(--bg-page);
             color: var(--dark);
             overflow-x: hidden;
         }
 
-        /* --- STYLE PAMFLET UMUM --- */
+        /* --- STYLE PAMFLET --- */
         .pamflet {
             background-color: var(--cream);
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Tekstur kertas */
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             border: 15px solid white;
-            outline: 2px solid var(--gold);
+            outline: 1px solid var(--gold);
             outline-offset: -10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 40px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px 25px;
             box-sizing: border-box;
             position: relative;
         }
 
-        /* --- COVER (SAMPUL) --- */
+        /* --- SAMPUL (LANDING PAGE) --- */
         #sampul {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background: #d4af37; /* Warna dasar emas */
+            background-color: var(--bg-landing);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
         .pamflet-cover {
-            width: 90%;
-            max-width: 450px;
-            height: 85vh;
+            width: 100%; /* Lebar penuh */
+            height: 100vh; /* Tinggi penuh mengikuti website */
+            max-width: 500px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -59,34 +61,33 @@
             text-align: center;
         }
 
-        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 45px; color: var(--gold); margin: 0; }
-        .sub-judul { letter-spacing: 3px; font-size: 12px; font-weight: 600; margin-bottom: 20px; color: #888; }
+        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 55px; color: var(--gold); margin: 10px 0; }
+        .sub-judul { letter-spacing: 4px; font-size: 11px; font-weight: 600; color: #8a8a8a; }
 
-        /* KOTAK TAMU (SAMPUL & ISI) */
         .kotak-tamu {
-            margin: 25px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            background: rgba(255,255,255,0.5);
-            border-radius: 8px;
-            width: 80%;
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            width: 75%;
         }
-        .kotak-tamu p { margin: 0; font-size: 12px; color: #666; }
-        .kotak-tamu span { display: block; font-size: 20px; font-weight: bold; color: var(--dark); margin-top: 5px; }
+        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; }
+        .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
 
         /* --- BUTTONS --- */
         .btn-aksi {
             display: inline-block;
-            margin-top: 15px;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background-color: var(--dark);
             color: white;
             text-decoration: none;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
         .btn-buka { animation: pulse 2s infinite; }
@@ -100,29 +101,40 @@
         #isi-undangan {
             display: none;
             max-width: 600px;
-            margin: 20px auto;
-            padding: 10px;
+            margin: 0 auto;
         }
 
         .pamflet-konten {
-            margin-bottom: 30px;
+            min-height: 100vh; /* Setiap bagian dibuat setinggi layar */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 15px; }
-        hr.hias { border: 0; border-top: 1px solid var(--gold); width: 50px; margin: 20px auto; }
-
-        /* --- MAPS & MODAL --- */
-        .map-container { width: 100%; height: 250px; margin: 15px 0; border-radius: 5px; overflow: hidden; border: 1px solid #ddd; }
+        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 42px; color: var(--gold); margin-bottom: 20px; }
         
+        /* --- MAPS BOX --- */
+        .map-container { 
+            width: 100%; 
+            height: 300px; 
+            margin: 20px 0; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            border: 1px solid #eee; 
+        }
+
+        /* --- MODAL --- */
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
         .modal-content {
-            background: var(--cream);
+            background: white;
             margin: 2vh auto;
-            padding: 20px;
+            padding: 25px;
             width: 90%; max-width: 500px;
-            height: 96vh;
-            border-radius: 10px;
+            height: 90vh;
+            border-radius: 15px;
             display: flex; flex-direction: column;
             box-sizing: border-box;
         }
@@ -133,7 +145,7 @@
 
     <div id="sampul">
         <div class="pamflet pamflet-cover">
-            <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
+            <div class="sub-judul">THE WEDDING OF</div>
             <h1>Ryu & Bhetri</h1>
             <div class="kotak-tamu">
                 <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
@@ -146,42 +158,40 @@
     <div id="isi-undangan">
         
         <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <div class="sub-judul">THE WEDDING OF</div>
-            <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 20px; font-family: 'Great Vibes';">&</p>
-            <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
-            
-            <div class="kotak-tamu" style="width: auto; margin: 20px auto; background: none; border-color: var(--gold);">
-                <p>Spesial Untuk:</p>
+            <h2 class="judul-bagian">Ryu & Bhetri</h2>
+            <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
+                <p>Untuk Sahabat Kami:</p>
                 <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
             </div>
-
-            <p style="font-size: 13px; line-height: 1.6;">"Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah kami menyatukan cinta dalam ikatan suci pernikahan."</p>
+            <p style="font-size: 14px; line-height: 1.8; padding: 0 20px;">
+                "Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di hari bahagia kami."
+            </p>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
             <h2 class="judul-bagian">Waktu & Lokasi</h2>
             <p><strong>Akad Nikah</strong><br>Jumat, 22 Mei 2026 | 08.00 WIB</p>
-            <hr class="hias">
             <p><strong>Resepsi Pernikahan</strong><br>Sabtu, 23 Mei 2026 | 10.00 WIB</p>
-            <p><strong>Gedung Balai Buntar</strong><br>Kota Bengkulu</p>
+            <p><strong>Gedung Balai Buntar</strong><br>Jl. Pangeran Natadirja, Kota Bengkulu</p>
             
             <div class="map-container">
-                <iframe src="http://googleusercontent.com/maps.google.com/9" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.026402206744!2d102.2965853!3d-3.8049339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e36b00642f1f0a1%3A0x6431952e4638706b!2sBalai%20Buntar!5e0!3m2!1sid!2sid!4v1715650000000!5m2!1sid!2sid" 
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
             </div>
-            <a href="https://maps.app.goo.gl/...0" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ GOOGLE MAPS</a>
+            
+            <a href="https://maps.app.goo.gl/9v1z6S4Uf1p2p3q4" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
             <h2 class="judul-bagian">Tanda Kasih</h2>
-            <p style="font-size: 13px; margin-bottom: 20px;">Doa Restu Anda merupakan karunia terindah bagi kami.</p>
-            
-            <div style="border: 1px dashed var(--gold); padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <div style="border: 1px dashed var(--gold); padding: 20px; border-radius: 10px; margin-bottom: 20px; width: 80%;">
                 <p><strong>Bank BCA</strong><br><span id="norek-bca">1234567890</span><br>a.n Ryu River Saputra</p>
-                <button onclick="salinTeks('norek-bca')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 10px; padding: 5px 10px;">SALIN NO. REK</button>
+                <button onclick="salinTeks('norek-bca')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
             </div>
 
-            <div style="background: #fdfaf0; padding: 15px; border-radius: 5px; font-size: 13px; font-style: italic; margin-bottom: 20px; text-align: left;">
+            <div style="background: #fdfaf0; padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%;">
                 "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
                 <small>- HR. Abu Daud</small>
             </div>
@@ -189,25 +199,19 @@
             <button class="btn-aksi" onclick="bukaModal()">✍️ ISI BUKU TAMU</button>
         </div>
 
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <h2 class="judul-bagian">Terima Kasih</h2>
-            <p style="font-size: 13px;">Merupakan kehormatan bagi kami jika Anda berkenan hadir.</p>
-            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20akan%20Hadir." class="btn-aksi" style="background-color: #25D366;" target="_blank">📱 KONFIRMASI (RSVP)</a>
-        </div>
-
     </div>
 
     <div id="modalUcapan" class="modal">
         <div class="modal-content">
-            <span style="align-self:flex-end; cursor:pointer; font-size: 24px;" onclick="tutupModal()">×</span>
-            <h2 class="judul-bagian" style="font-size: 28px; text-align: center;">Buku Tamu</h2>
+            <span style="align-self:flex-end; cursor:pointer; font-size: 30px; color: #999;" onclick="tutupModal()">×</span>
+            <h2 class="judul-bagian" style="font-size: 32px; text-align: center;">Buku Tamu</h2>
             <div class="modal-body">
                 <form id="form-komentar">
-                    <input type="text" id="input-nama" placeholder="Nama Anda" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd; box-sizing:border-box;">
-                    <textarea id="input-ucapan" placeholder="Tulis ucapan/doa..." required style="width:100%; padding:12px; height:80px; margin-bottom:10px; border:1px solid #ddd; box-sizing:border-box;"></textarea>
+                    <input type="text" id="input-nama" placeholder="Nama Anda" required style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
+                    <textarea id="input-ucapan" placeholder="Tulis ucapan/doa..." required style="width:100%; padding:15px; height:100px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
                     <button type="submit" id="btn-kirim" class="btn-aksi" style="width:100%;">KIRIM UCAPAN</button>
                 </form>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
                 <div id="daftar-komentar"></div>
             </div>
         </div>
@@ -217,7 +221,6 @@
     <script>
         AOS.init();
 
-        // Ambil nama tamu dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
@@ -225,7 +228,6 @@
             elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
         }
 
-        // Buka Undangan + Fullscreen
         function bukaUndangan() {
             let elem = document.documentElement;
             if (elem.requestFullscreen) { elem.requestFullscreen(); }
@@ -239,19 +241,16 @@
             }, 600);
         }
 
-        // Modal Logic
         const modal = document.getElementById("modalUcapan");
-        function bukaModal() { modal.style.display = "block"; muatKomentar(); }
-        function tutupModal() { modal.style.display = "none"; }
+        function bukaModal() { modal.style.display = "block"; document.body.style.overflow = "hidden"; muatKomentar(); }
+        function tutupModal() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
 
-        // Salin Rekening
         function salinTeks(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text);
             alert("Nomor rekening disalin!");
         }
 
-        // API Komentar (Pastikan URL Script Anda benar)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwVu3VyJD95Zpa49BIcWMIOMBG08BXCT42WOp_yUSyca4g7SBQJ876S4HQ4Mq9qm83WsQ/exec';
         
         function muatKomentar() {
@@ -259,8 +258,8 @@
                 const list = document.getElementById('daftar-komentar');
                 list.innerHTML = '';
                 data.reverse().forEach(item => {
-                    list.innerHTML += `<div style="border-bottom:1px solid #eee; margin-bottom:10px; padding-bottom:5px;">
-                        <strong style="color:var(--gold); font-size:14px;">${item.nama}</strong><br><small style="color:#555;">${item.ucapan}</small></div>`;
+                    list.innerHTML += `<div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:10px;">
+                        <strong style="color:var(--gold); font-size:14px;">${item.nama}</strong><br><small style="color:#555; line-height:1.5;">${item.ucapan}</small></div>`;
                 });
             });
         }
