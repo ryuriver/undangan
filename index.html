@@ -127,32 +127,6 @@
             padding: 20px; border-radius: 10px; 
             margin-bottom: 20px; width: 80%;
         }
-
-        /* --- MODAL & ANIMASI LOADING --- */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-        .modal-content {
-            background: white;
-            margin: 2vh auto; padding: 25px;
-            width: 90%; max-width: 500px; height: 90vh;
-            border-radius: 15px;
-            display: flex; flex-direction: column; box-sizing: border-box;
-        }
-        .modal-body { overflow-y: auto; flex-grow: 1; padding-right: 10px; }
-
-        /* CSS Untuk Animasi Refresh/Loading */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--gold);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
@@ -177,7 +151,7 @@
             <p style="font-size: 13px; color: #777;">Putri ke empat dari Alm bapak Zaherundin & Almh Yurmailis</p>
             <p style="font-size: 24px; font-family: 'Great Vibes'; color: var(--gold); margin: 15px 0;">&</p>
             <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra pertama dari bapak Benyamin & Ibu Zainah</p>
+            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra pertama dari bapak Benyamin & Ibu Zaina</p>
             
             <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
                 <p>Spesial Untuk Sahabat Kami:</p>
@@ -198,9 +172,9 @@
             <p><strong>Gedung Balai Buntar</strong><br>Jl. Pangeran Natadirja, Kota Bengkulu</p>
             
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.289381643632!2d102.2612716!3d-3.791557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e0886566060c239%3A0x6b87693c3e86c050!2sGedung%20Balai%20Buntar!5e0!3m2!1sid!2sid!4v1714470213192!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            <a href="https://maps.app.goo.gl/uXpT3V47M5z4m7XG9" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
+            <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
@@ -214,8 +188,6 @@
                 "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
                 <small>(Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah mempersatukan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
             </div>
-
-            <button class="btn-aksi" onclick="bukaModal()">✍️ ISI BUKU TAMU</button>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
@@ -227,27 +199,8 @@
                 Jazakumullah Khairan Katsira<br>Wassalamu'alaikum Warahmatullahi Wabarakatuh
             </p>
             <h2 class="judul-bagian" style="margin-top: 30px;">Bhetri & Ryu</h2>
-            <a href="https://wa.me/6281234567890?text=Halo,%20saya%20akan%20Hadir." class="btn-aksi" style="background-color: #25D366; margin-top: 30px;" target="_blank">📱 KONFIRMASI (RSVP)</a>
         </div>
 
-    </div>
-
-    <div id="modalUcapan" class="modal">
-        <div class="modal-content">
-            <span style="align-self:flex-end; cursor:pointer; font-size: 30px; color: #999;" onclick="tutupModal()">×</span>
-            <h2 class="judul-bagian" style="font-size: 32px; text-align: center;">Buku Tamu</h2>
-            <div class="modal-body">
-                <form id="form-komentar">
-                    <input type="text" id="input-nama" placeholder="Nama Anda" required style="width:100%; padding:15px; margin-bottom:10px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;">
-                    <textarea id="input-ucapan" placeholder="Tulis ucapan/doa..." required style="width:100%; padding:15px; height:100px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; box-sizing:border-box;"></textarea>
-                    <button type="submit" id="btn-kirim" class="btn-aksi" style="width:100%;">KIRIM UCAPAN</button>
-                </form>
-                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eee;">
-                
-                <div id="daftar-komentar">
-                    </div>
-            </div>
-        </div>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -274,86 +227,11 @@
             }, 600);
         }
 
-        const modal = document.getElementById("modalUcapan");
-        function bukaModal() { 
-            modal.style.display = "block"; 
-            document.body.style.overflow = "hidden"; 
-            muatKomentar(); 
-        }
-        function tutupModal() { 
-            modal.style.display = "none"; 
-            document.body.style.overflow = "auto"; 
-        }
-
         function salinTeks(id) {
             const text = document.getElementById(id).innerText;
             navigator.clipboard.writeText(text);
             alert("Nomor rekening disalin!");
         }
-
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwVu3VyJD95Zpa49BIcWMIOMBG08BXCT42WOp_yUSyca4g7SBQJ876S4HQ4Mq9qm83WsQ/exec';
-        
-        // --- FUNGSI LOAD KOMENTAR ---
-        function muatKomentar() {
-            const list = document.getElementById('daftar-komentar');
-            // Tampilkan animasi loading saat menarik data
-            list.innerHTML = `
-                <div class="loader"></div>
-                <p style="text-align:center; font-size:12px; color:#888;">Memuat ucapan...</p>
-            `;
-
-            fetch(scriptURL)
-            .then(r => r.json())
-            .then(data => {
-                list.innerHTML = ''; // Hapus animasi loading
-                
-                if(data.length === 0) {
-                    list.innerHTML = '<p style="text-align:center; color:#888; font-size:13px;">Belum ada ucapan. Jadilah yang pertama!</p>';
-                    return;
-                }
-
-                data.reverse().forEach(item => {
-                    list.innerHTML += `<div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:10px; text-align:left;">
-                        <strong style="color:var(--gold); font-size:14px;">${item.nama}</strong><br><small style="color:#555; line-height:1.5;">${item.ucapan}</small></div>`;
-                });
-            })
-            .catch(error => {
-                list.innerHTML = '<p style="text-align:center; color:red; font-size:12px;">Gagal memuat ucapan. Silakan coba lagi.</p>';
-            });
-        }
-
-        // --- FUNGSI KIRIM KOMENTAR ---
-        document.getElementById('form-komentar').addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('btn-kirim');
-            const list = document.getElementById('daftar-komentar');
-            
-            // Ubah tombol dan tampilkan loading saat mengirim
-            btn.innerText = 'MENGIRIM...'; 
-            btn.disabled = true;
-            list.innerHTML = `
-                <div class="loader"></div>
-                <p style="text-align:center; font-size:12px; color:#888;">Menyimpan ucapan Anda...</p>
-            `;
-
-            const formData = new URLSearchParams();
-            formData.append('nama', document.getElementById('input-nama').value);
-            formData.append('ucapan', document.getElementById('input-ucapan').value);
-            
-            fetch(scriptURL, { method: 'POST', body: formData })
-            .then(() => {
-                document.getElementById('form-komentar').reset();
-                btn.innerText = 'KIRIM UCAPAN'; 
-                btn.disabled = false;
-                muatKomentar(); // Tarik data lagi secara otomatis
-            })
-            .catch(error => {
-                alert('Terjadi kesalahan. Gagal mengirim ucapan.');
-                btn.innerText = 'KIRIM UCAPAN'; 
-                btn.disabled = false;
-                muatKomentar(); // Kembalikan list seperti semula
-            });
-        });
     </script>
 </body>
 </html>
