@@ -12,7 +12,7 @@
         :root {
             --gold: #c5a059;
             --cream: #ffffff;
-            --bg-page: #fdfaf0; /* Warna cream yang lebih hangat */
+            --bg-page: #fdfaf0; 
             --bg-landing: #e2e7d8;
             --dark: #4a4a4a;
         }
@@ -20,9 +20,10 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-page);
-            /* Menambahkan tekstur kertas pada background agar tidak polos */
+            /* Background diperbagus dengan Gradasi Elegan dipadukan tekstur kertas */
+            background: linear-gradient(135deg, #f4e8d1 0%, #e2e7d8 100%);
             background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            background-attachment: fixed;
             color: var(--dark);
             overflow-x: hidden;
         }
@@ -34,14 +35,14 @@
             border: 15px solid white;
             outline: 1px solid var(--gold);
             outline-offset: -10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
             padding: 40px 25px;
             box-sizing: border-box;
             position: relative;
             overflow: hidden; /* Menjaga bunga tidak keluar batas box */
         }
 
-        /* --- DEKORASI BUNGA SUDUT (DIPERBAIKI) --- */
+        /* --- DEKORASI BUNGA SUDUT --- */
         .bunga-kiri-bawah {
             position: absolute;
             bottom: -10px; left: -10px;
@@ -65,7 +66,9 @@
         #sampul {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--bg-landing);
+            /* Cover diberi gradasi mewah */
+            background: radial-gradient(circle, #fdfaf0 0%, #e2e7d8 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             display: flex;
             justify-content: center;
             align-items: center;
@@ -84,7 +87,7 @@
             text-align: center;
         }
 
-        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 40px; color: var(--gold); margin: 10px 0; }
+        #sampul h1 { font-family: 'Great Vibes', cursive; color: var(--gold); margin: 0; }
         .sub-judul { letter-spacing: 4px; font-size: 11px; font-weight: 600; color: #8a8a8a; }
 
         .kotak-tamu {
@@ -94,6 +97,8 @@
             background: rgba(255,255,255,0.8);
             border-radius: 10px;
             width: 75%;
+            position: relative;
+            z-index: 15;
         }
         .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; line-height: 1.5; }
         .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
@@ -121,6 +126,8 @@
             cursor: pointer;
             letter-spacing: 1px;
             transition: 0.3s;
+            position: relative;
+            z-index: 15;
         }
         .btn-buka { animation: pulse 2s infinite; }
         @keyframes pulse {
@@ -143,26 +150,39 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Jarak antar pamflet agak diperlebar sedikit */
         }
 
         .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 20px; }
         hr.hias { border: 0; border-top: 1px solid var(--gold); width: 60px; margin: 25px auto; }
 
+        /* --- MAP DIPERBAIKI --- */
         .map-container { 
-            width: 100%; height: 300px; margin: 20px 0; 
-            border-radius: 10px; overflow: hidden; border: 1px solid #eee; 
+            width: 85%; /* Lebar dikecilkan agar tidak menabrak bunga */
+            max-width: 400px;
+            height: 250px; /* Tinggi disesuaikan */
+            margin: 20px auto; /* Membuat posisi ke tengah */
+            border-radius: 10px; 
+            overflow: hidden; 
+            border: 2px solid #f2e7d3; /* Border disesuaikan agar nyambung dengan tema */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 15; /* Menjaga map berada di atas bunga jika bersentuhan */
         }
 
         .rekening-box {
             border: 1px dashed var(--gold); 
             padding: 20px; border-radius: 10px; 
             margin-bottom: 15px; width: 80%;
+            position: relative;
+            z-index: 15;
+            background: rgba(255, 255, 255, 0.7);
         }
 
         /* --- HITUNG MUNDUR (COUNTDOWN) --- */
         .cd-container {
             display: flex; justify-content: center; gap: 12px; margin: 25px 0;
+            position: relative; z-index: 15;
         }
         .cd-box {
             background-color: var(--gold); color: white; padding: 12px 10px; 
@@ -172,7 +192,7 @@
         .cd-box p { margin: 5px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- TIMELINE (OUR STORY) --- */
-        .timeline { position: relative; max-width: 100%; margin: 20px auto; padding: 0 20px; }
+        .timeline { position: relative; max-width: 100%; margin: 20px auto; padding: 0 20px; z-index: 15; }
         .timeline::after {
             content: ''; position: absolute; width: 2px; background-color: var(--gold);
             top: 0; bottom: 0; left: 50%; margin-left: -1px;
@@ -187,6 +207,7 @@
         .right::after { left: -9px; }
         .timeline-content {
             padding: 15px; background-color: #fdfaf0; border-radius: 6px; border: 1px solid #f2e7d3;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .timeline-content h3 { margin: 0 0 5px 0; color: var(--gold); font-size: 15px; }
         .timeline-content p { margin: 0; font-size: 12px; line-height: 1.5; color: #666; }
@@ -217,10 +238,14 @@
             <img src="bunga.png" class="bunga-kiri-bawah" alt="">
             <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
-            <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
-            <h1>Ryu</h1>
-            <h1>&</h1>
-            <h1>Bhetri</h1>
+            <div class="sub-judul" style="margin-bottom: 20px;">UNDANGAN PERNIKAHAN</div>
+            
+            <h1 style="font-size: 55px; line-height: 0.8;">Ryu</h1>
+            <h1 style="font-size: 35px; color: #999; margin: 10px 0;">&</h1>
+            <h1 style="font-size: 55px; line-height: 0.8;">Bhetri</h1>
+            
+            <hr style="width: 50px; border: 0; border-top: 1px solid var(--gold); margin: 25px auto 10px auto;">
+
             <div class="kotak-tamu">
                 <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
                 <span class="nama-tamu-display">Tamu Spesial</span>
@@ -237,19 +262,21 @@
 
             <div class="sub-judul">THE WEDDING OF</div>
             <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
-            <p style="font-size: 13px; color: #777;">Putri Ke-empat dari Bapak Zaherudin (Rahimahullah) & Ibu Yurmailis (Rahimahallah)</p>
+            <p style="font-size: 13px; color: #777; position: relative; z-index: 15;">Putri Ke-empat dari Bapak Zaherudin (Rahimahullah) & Ibu Yurmailis (Rahimahallah)</p>
+            
             <p style="font-size: 24px; font-family: 'Great Vibes'; color: var(--gold); margin: 15px 0;">&</p>
+            
             <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra Pertama dari Bapak Benyamin & Ibu Zaina Dayana</p>
+            <p style="font-size: 13px; color: #777; margin-bottom: 30px; position: relative; z-index: 15;">Putra Pertama dari Bapak Benyamin & Ibu Zaina Dayana</p>
             
             <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
                 <p>Spesial Untuk Sahabat Kami : <br>Bapak/Ibu/Saudara/i</p>
                 <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
             </div>
 
-            <h3 class="teks-arab">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h3>
+            <h3 class="teks-arab" style="position: relative; z-index: 15;">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h3>
 
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px;">
+            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; position: relative; z-index: 15;">
                 "Assalamu'alaikum Warahmatullahi Wabarakatuh<br>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara kami."
             </p>
         </div>
@@ -260,10 +287,10 @@
 
             <div class="sub-judul">SAVE THE DATE</div>
             <h2 class="judul-bagian">Waktu & Lokasi</h2>
-            <p><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
+            <p style="position: relative; z-index: 15;"><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
             <hr class="hias">
-            <p><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
-            <p><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
+            <p style="position: relative; z-index: 15;"><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
+            <p style="position: relative; z-index: 15;"><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
             
             <div class="cd-container" id="countdown">
                 <div class="cd-box"><span id="hari">00</span><p>Hari</p></div>
@@ -277,6 +304,7 @@
             <div class="map-container">
                 <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
+            
             <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
         </div>
 
@@ -327,7 +355,7 @@
                 <button onclick="salinTeks('norek-bsi-ryu')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
             </div>
 
-            <div style="background: #fdfaf0; padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-top: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%;">
+            <div style="background: rgba(253, 250, 240, 0.9); padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-top: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%; position: relative; z-index: 15;">
                 "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
                 <small>(Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah mempersatukan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
             </div>
@@ -338,10 +366,10 @@
             <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <h2 class="judul-bagian">Terima Kasih</h2>
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
+            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px; position: relative; z-index: 15;">
                 "Tiada yang dapat kami ungkapkan selain rasa terima kasih dari hati yang tulus Apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami."
             </p>
-            <p style="font-size: 13px; font-weight: bold;">
+            <p style="font-size: 13px; font-weight: bold; position: relative; z-index: 15;">
                 Jazakumullah Khairan Katsira<br>Wassalamu'alaikum Warahmatullahi Wabarakatuh
             </p>
             <h2 class="judul-bagian" style="margin-top: 30px;">Bhetri & Ryu</h2>
