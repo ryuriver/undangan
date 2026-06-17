@@ -139,7 +139,7 @@
         .cd-box span { display: block; font-size: 24px; font-weight: bold; }
         .cd-box p { margin: 5px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- TIMELINE (KISAH CINTA) --- */
+        /* --- TIMELINE (OUR STORY) --- */
         .timeline { position: relative; max-width: 100%; margin: 20px auto; padding: 0 20px; }
         .timeline::after {
             content: ''; position: absolute; width: 2px; background-color: var(--gold);
@@ -193,14 +193,6 @@
     </div>
 
     <div id="isi-undangan">
-
-        <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
-            <img src="https://www.pngmart.com/files/22/Bismillah-Calligraphy-PNG-HD-Isolated.png" alt="Bismillah" style="width: 150px; margin-bottom: 20px; opacity: 0.8;">
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 10px; font-style: italic;">
-                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
-            </p>
-            <p style="font-size: 12px; font-weight: bold; color: var(--gold);">(QS. Ar-Rum: 21)</p>
-        </div>
         
         <div class="pamflet pamflet-konten" data-aos="fade-up">
             <div class="sub-judul">THE WEDDING OF</div>
@@ -244,29 +236,28 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
-            <div class="sub-judul">OUR STORY</div>
-            <h2 class="judul-bagian">Kisah Cinta Kami</h2>
+            <h2 class="judul-bagian">Our Story</h2>
             
             <div class="timeline">
                 <div class="timeline-item left" data-aos="fade-right">
                     <div class="timeline-content">
-                        <h3>Awal Bertemu</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">Maret 2025</p>
-                        <p>Takdir mempertemukan kami dalam sebuah kesempatan yang tak disangka. Berawal dari perkenalan sederhana yang membawa kesan mendalam.</p>
+                        <h3>Nazhor & Taaruf</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">April</p>
+                        <p>Saat itu kami memulai perkenalan dari media taaruf dan merasa ada kecocokan, akhirnya memutuskan untuk nadzor.</p>
                     </div>
                 </div>
                 <div class="timeline-item right" data-aos="fade-left">
                     <div class="timeline-content">
-                        <h3>Khitbah (Lamaran)</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">Desember 2025</p>
-                        <p>Dengan niat baik dan keteguhan hati, kami melibatkan keluarga besar untuk saling mengenal dan melangkah ke jenjang yang lebih serius.</p>
+                        <h3>Khitbah</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">31 Mei</p>
+                        <p>Dengan berbagai pertimbangan yang matang dan mengharap ridho Allah Azza wa Jalla, akhirnya khitbah menjadi jalan kami untuk menuju jenjang yang lebih serius.</p>
                     </div>
                 </div>
                 <div class="timeline-item left" data-aos="fade-right">
                     <div class="timeline-content">
-                        <h3>Pernikahan</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">05 Juli 2026</p>
-                        <p>Hari yang paling dinantikan. Momen dimana kami mengikat janji suci di hadapan Allah dan keluarga untuk hidup menua bersama.</p>
+                        <h3>Akad & Resepsi</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">5 Juli</p>
+                        <p>Semoga ini menjadi jalan terbaik yang Allah tetapkan untuk menggapai ridho-Nya.</p>
                     </div>
                 </div>
             </div>
@@ -314,7 +305,6 @@
     <script>
         AOS.init();
 
-        // Mengambil nama dari URL untuk sapaan tamu
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
