@@ -41,20 +41,21 @@
             overflow: hidden; /* Menjaga bunga tidak keluar batas box */
         }
 
-        /* --- DEKORASI BUNGA SUDUT --- */
-        .bunga-kiri-atas {
+        /* --- DEKORASI BUNGA SUDUT (DIPERBARUI) --- */
+        .bunga-kiri-bawah {
             position: absolute;
-            top: -10px; left: -10px;
+            bottom: -10px; left: -10px;
             width: 150px;
+            transform: rotate(-90deg); /* Memutar gambar bunga agar pas di sudut kiri bawah */
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
         }
-        .bunga-kanan-bawah {
+        .bunga-kanan-atas {
             position: absolute;
-            bottom: -10px; right: -10px;
+            top: -10px; right: -10px;
             width: 150px;
-            transform: rotate(180deg); /* Memutar gambar bunga untuk sudut bawah */
+            transform: rotate(90deg); /* Memutar gambar bunga agar pas di sudut kanan atas */
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
@@ -213,8 +214,8 @@
 
     <div id="sampul">
         <div class="pamflet pamflet-cover">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
             <h1>Ryu & Bhetri</h1>
@@ -229,8 +230,8 @@
     <div id="isi-undangan">
         
         <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <div class="sub-judul">THE WEDDING OF</div>
             <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
@@ -252,8 +253,8 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <div class="sub-judul">SAVE THE DATE</div>
             <h2 class="judul-bagian">Waktu & Lokasi</h2>
@@ -278,8 +279,8 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <h2 class="judul-bagian">Our Story</h2>
             
@@ -309,8 +310,8 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <h2 class="judul-bagian">Tanda Kasih</h2>
 
@@ -331,8 +332,8 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <img src="bunga.png" class="bunga-kiri-atas" alt="">
-            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
             <h2 class="judul-bagian">Terima Kasih</h2>
             <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
