@@ -1,243 +1,243 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Ryu & Bhetri</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Ryu & Bhetri</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <style>
-        :root {
-            --gold: #c5a059;
-            --cream: #ffffff;
-            --bg-page: #f4f4f4;
-            --bg-landing: #e2e7d8;
-            --dark: #4a4a4a;
-        }
+    <style>
+        :root {
+            --gold: #c5a059;
+            --cream: #ffffff;
+            --bg-page: #f4f4f4;
+            --bg-landing: #e2e7d8;
+            --dark: #4a4a4a;
+        }
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-page);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
 
-        /* --- STYLE PAMFLET UMUM --- */
-        .pamflet {
-            background-color: var(--cream);
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            border: 15px solid white;
-            outline: 1px solid var(--gold);
-            outline-offset: -10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            padding: 40px 25px;
-            box-sizing: border-box;
-            position: relative;
-        }
+        /* --- STYLE PAMFLET UMUM --- */
+        .pamflet {
+            background-color: var(--cream);
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            border: 15px solid white;
+            outline: 1px solid var(--gold);
+            outline-offset: -10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 40px 25px;
+            box-sizing: border-box;
+            position: relative;
+        }
 
-        /* --- SAMPUL --- */
-        #sampul {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background-color: var(--bg-landing);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-        }
+        /* --- SAMPUL --- */
+        #sampul {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background-color: var(--bg-landing);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+        }
 
-        .pamflet-cover {
-            width: 100%; 
-            height: 100vh; 
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+        .pamflet-cover {
+            width: 100%; 
+            height: 100vh; 
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 55px; color: var(--gold); margin: 10px 0; }
-        .sub-judul { letter-spacing: 4px; font-size: 11px; font-weight: 600; color: #8a8a8a; }
+        #sampul h1 { font-family: 'Great Vibes', cursive; font-size: 55px; color: var(--gold); margin: 10px 0; }
+        .sub-judul { letter-spacing: 4px; font-size: 11px; font-weight: 600; color: #8a8a8a; }
 
-        .kotak-tamu {
-            margin: 30px 0;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            width: 75%;
-        }
-        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; }
-        .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
+        .kotak-tamu {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            width: 75%;
+        }
+        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; }
+        .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
 
-        /* --- BUTTONS --- */
-        .btn-aksi {
-            display: inline-block;
-            padding: 14px 35px;
-            background-color: var(--dark);
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-        .btn-buka { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
+        /* --- BUTTONS --- */
+        .btn-aksi {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: var(--dark);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .btn-buka { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
 
-        /* --- ISI UNDANGAN --- */
-        #isi-undangan {
-            display: none;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        /* --- ISI UNDANGAN --- */
+        #isi-undangan {
+            display: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-        .pamflet-konten {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        .pamflet-konten {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 20px; }
-        hr.hias { border: 0; border-top: 1px solid var(--gold); width: 60px; margin: 25px auto; }
+        .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 20px; }
+        hr.hias { border: 0; border-top: 1px solid var(--gold); width: 60px; margin: 25px auto; }
 
-        .map-container { 
-            width: 100%; height: 300px; margin: 20px 0; 
-            border-radius: 10px; overflow: hidden; border: 1px solid #eee; 
-        }
+        .map-container { 
+            width: 100%; height: 300px; margin: 20px 0; 
+            border-radius: 10px; overflow: hidden; border: 1px solid #eee; 
+        }
 
-        .rekening-box {
-            border: 1px dashed var(--gold); 
-            padding: 20px; border-radius: 10px; 
-            margin-bottom: 15px; width: 80%;
-        }
-    </style>
+        .rekening-box {
+            border: 1px dashed var(--gold); 
+            padding: 20px; border-radius: 10px; 
+            margin-bottom: 15px; width: 80%;
+        }
+    </style>
 </head>
 <body>
 
-    <div id="sampul">
-        <div class="pamflet pamflet-cover">
-            <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
-            <h1>Ryu & Bhetri</h1>
-            <div class="kotak-tamu">
-                <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
-                <span class="nama-tamu-display">Tamu Spesial</span>
-            </div>
-            <button class="btn-aksi btn-buka" onclick="bukaUndangan()">BUKA UNDANGAN</button>
-        </div>
-    </div>
+    <div id="sampul">
+        <div class="pamflet pamflet-cover">
+            <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
+            <h1>Ryu & Bhetri</h1>
+            <div class="kotak-tamu">
+                <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
+                <span class="nama-tamu-display">Tamu Spesial</span>
+            </div>
+            <button class="btn-aksi btn-buka" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+        </div>
+    </div>
 
-    <div id="isi-undangan">
-        
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <div class="sub-judul">THE WEDDING OF</div>
-            <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
-            <p style="font-size: 13px; color: #777;">Putri ke empat dari Alm bapak Zaherundin & Almh Yurmailis</p>
-            <p style="font-size: 24px; font-family: 'Great Vibes'; color: var(--gold); margin: 15px 0;">&</p>
-            <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra pertama dari bapak Benyamin & Ibu Zaina</p>
-            
-            <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
-                <p>Spesial Untuk Sahabat Kami:</p>
-                <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
-            </div>
+    <div id="isi-undangan">
+        
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <div class="sub-judul">THE WEDDING OF</div>
+            <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
+            <p style="font-size: 13px; color: #777;">Putri ke empat dari Alm bapak Zaherundin & Almh Yurmailis</p>
+            <p style="font-size: 24px; font-family: 'Great Vibes'; color: var(--gold); margin: 15px 0;">&</p>
+            <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
+            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra pertama dari bapak Benyamin & Ibu Zaina</p>
+            
+            <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
+                <p>Spesial Untuk Sahabat Kami:</p>
+                <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
+            </div>
 
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px;">
-                "Assalamu'alaikum Wr Wb<br>Tanpa mengurangi rasa hormat, kami mengundang bapak/ibu/saudara/i untuk menghadiri acara kami."
-            </p>
-        </div>
+            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px;">
+                "Assalamu'alaikum Wr Wb<br>Tanpa mengurangi rasa hormat, kami mengundang bapak/ibu/saudara/i untuk menghadiri acara kami."
+            </p>
+        </div>
 
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <div class="sub-judul">SAVE THE DATE</div>
-            <h2 class="judul-bagian">Waktu & Lokasi</h2>
-            <p><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
-            <hr class="hias">
-            <p><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
-            <p><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
-            
-            <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
-        </div>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <div class="sub-judul">SAVE THE DATE</div>
+            <h2 class="judul-bagian">Waktu & Lokasi</h2>
+            <p><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
+            <hr class="hias">
+            <p><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
+            <p><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
+            
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
+        </div>
 
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <h2 class="judul-bagian">Tanda Kasih</h2>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <h2 class="judul-bagian">Tanda Kasih</h2>
 
-            <div class="rekening-box">
-                <p><strong>Bank BSI</strong><br><span id="norek-bsi-bhetri">7278966318</span><br>a.n Bhetri</p>
-                <button onclick="salinTeks('norek-bsi-bhetri')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
-            </div>
+            <div class="rekening-box">
+                <p><strong>Bank BSI</strong><br><span id="norek-bsi-bhetri">7278966318</span><br>a.n Bhetri</p>
+                <button onclick="salinTeks('norek-bsi-bhetri')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
+            </div>
 
-            <div class="rekening-box">
-                <p><strong>Bank BSI</strong><br><span id="norek-bsi-ryu">7494411940</span><br>a.n Ryu River Saputra</p>
-                <button onclick="salinTeks('norek-bsi-ryu')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
-            </div>
+            <div class="rekening-box">
+                <p><strong>Bank BSI</strong><br><span id="norek-bsi-ryu">7494411940</span><br>a.n Ryu River Saputra</p>
+                <button onclick="salinTeks('norek-bsi-ryu')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
+            </div>
 
-            <div style="background: #fdfaf0; padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-top: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%;">
-                "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
-                <small>(Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah mempersatukan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
-            </div>
-        </div>
+            <div style="background: #fdfaf0; padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-top: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%;">
+                "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
+                <small>(Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah mempersatukan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
+            </div>
+        </div>
 
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <h2 class="judul-bagian">Terima Kasih</h2>
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
-                "Tiada yang dapat kami ungkapkan selain rasa terima kasih dari hati yang tulus Apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami."
-            </p>
-            <p style="font-size: 13px; font-weight: bold;">
-                Jazakumullah Khairan Katsira<br>Wassalamu'alaikum Warahmatullahi Wabarakatuh
-            </p>
-            <h2 class="judul-bagian" style="margin-top: 30px;">Bhetri & Ryu</h2>
-        </div>
+        <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <h2 class="judul-bagian">Terima Kasih</h2>
+            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
+                "Tiada yang dapat kami ungkapkan selain rasa terima kasih dari hati yang tulus Apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami."
+            </p>
+            <p style="font-size: 13px; font-weight: bold;">
+                Jazakumullah Khairan Katsira<br>Wassalamu'alaikum Warahmatullahi Wabarakatuh
+            </p>
+            <h2 class="judul-bagian" style="margin-top: 30px;">Bhetri & Ryu</h2>
+        </div>
 
-    </div>
+    </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('to');
-        if (nama) {
-            const elements = document.querySelectorAll('.nama-tamu-display');
-            elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
-        }
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('to');
+        if (nama) {
+            const elements = document.querySelectorAll('.nama-tamu-display');
+            elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
+        }
 
-        function bukaUndangan() {
-            let elem = document.documentElement;
-            if (elem.requestFullscreen) { elem.requestFullscreen(); }
-            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+        function bukaUndangan() {
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) { elem.requestFullscreen(); }
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
 
-            document.getElementById("sampul").style.transform = "translateY(-100%)";
-            setTimeout(() => {
-                document.getElementById("isi-undangan").style.display = "block";
-                window.scrollTo(0,0);
-                AOS.refresh();
-            }, 600);
-        }
+            document.getElementById("sampul").style.transform = "translateY(-100%)";
+            setTimeout(() => {
+                document.getElementById("isi-undangan").style.display = "block";
+                window.scrollTo(0,0);
+                AOS.refresh();
+            }, 600);
+        }
 
-        function salinTeks(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text);
-            alert("Nomor rekening disalin!");
-        }
-    </script>
+        function salinTeks(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
+            alert("Nomor rekening disalin!");
+        }
+    </script>
 </body>
 </html>
