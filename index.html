@@ -41,21 +41,25 @@
             overflow: hidden; /* Menjaga bunga tidak keluar batas box */
         }
 
-        /* --- DEKORASI BUNGA SUDUT (DIPERBARUI) --- */
+        /* --- DEKORASI BUNGA SUDUT (DIPERBARUI DENGAN SCALE/FLIP) --- */
         .bunga-kiri-bawah {
             position: absolute;
-            bottom: -10px; left: -10px;
+            bottom: -10px; 
+            left: -10px;
             width: 150px;
-            transform: rotate(-90deg); /* Memutar gambar bunga agar pas di sudut kiri bawah */
+            /* scaleY(-1) berfungsi seperti cermin vertikal agar gambar pas di bawah */
+            transform: scaleY(-1); 
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
         }
         .bunga-kanan-atas {
             position: absolute;
-            top: -10px; right: -10px;
+            top: -10px; 
+            right: -10px;
             width: 150px;
-            transform: rotate(90deg); /* Memutar gambar bunga agar pas di sudut kanan atas */
+            /* scaleX(-1) berfungsi seperti cermin horizontal agar gambar pas di kanan */
+            transform: scaleX(-1); 
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
