@@ -41,12 +41,12 @@
             overflow: hidden; /* Menjaga bunga tidak keluar batas box */
         }
 
-        /* --- DEKORASI BUNGA SUDUT (DIPERBARUI) --- */
+        /* --- DEKORASI BUNGA SUDUT (DIPERBAIKI) --- */
         .bunga-kiri-bawah {
             position: absolute;
             bottom: -10px; left: -10px;
             width: 150px;
-            transform: rotate(-90deg); /* Memutar gambar bunga agar pas di sudut kiri bawah */
+            /* Tidak ada rotasi karena gambar sudah didesain untuk kiri bawah */
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
@@ -55,7 +55,7 @@
             position: absolute;
             top: -10px; right: -10px;
             width: 150px;
-            transform: rotate(90deg); /* Memutar gambar bunga agar pas di sudut kanan atas */
+            transform: rotate(180deg); /* Memutar gambar 180 derajat ke sudut kanan atas */
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
