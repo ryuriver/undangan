@@ -128,30 +128,54 @@
             margin-bottom: 15px; width: 80%;
         }
 
-        /* --- AUDIO BUTTON (Tanpa Animasi Putar) --- */
+        /* --- HITUNG MUNDUR (COUNTDOWN) --- */
+        .cd-container {
+            display: flex; justify-content: center; gap: 12px; margin: 25px 0;
+        }
+        .cd-box {
+            background-color: var(--gold); color: white; padding: 12px 10px; 
+            border-radius: 8px; min-width: 55px; box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+        }
+        .cd-box span { display: block; font-size: 24px; font-weight: bold; }
+        .cd-box p { margin: 5px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- TIMELINE (KISAH CINTA) --- */
+        .timeline { position: relative; max-width: 100%; margin: 20px auto; padding: 0 20px; }
+        .timeline::after {
+            content: ''; position: absolute; width: 2px; background-color: var(--gold);
+            top: 0; bottom: 0; left: 50%; margin-left: -1px;
+        }
+        .timeline-item { padding: 10px 30px; position: relative; background-color: inherit; width: 50%; box-sizing: border-box; }
+        .timeline-item::after {
+            content: ''; position: absolute; width: 14px; height: 14px; right: -9px;
+            background-color: white; border: 3px solid var(--gold); top: 15px; border-radius: 50%; z-index: 1;
+        }
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; text-align: left; }
+        .right::after { left: -9px; }
+        .timeline-content {
+            padding: 15px; background-color: #fdfaf0; border-radius: 6px; border: 1px solid #f2e7d3;
+        }
+        .timeline-content h3 { margin: 0 0 5px 0; color: var(--gold); font-size: 15px; }
+        .timeline-content p { margin: 0; font-size: 12px; line-height: 1.5; color: #666; }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 15px; }
+            .timeline-item::after { left: 21px; }
+            .left { text-align: left; }
+            .right { left: 0; }
+        }
+
+        /* --- AUDIO BUTTON --- */
         #btn-audio {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--gold);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            cursor: pointer;
-            z-index: 1000;
-            display: none; /* Disembunyikan sampai undangan dibuka */
-            justify-content: center;
-            align-items: center;
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background-color: var(--gold); color: white; border: none; border-radius: 50%;
+            font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+            z-index: 1000; display: none; justify-content: center; align-items: center;
             transition: background-color 0.3s ease;
         }
-        
-        #btn-audio.paused {
-            background-color: #999;
-        }
+        #btn-audio.paused { background-color: #999; }
     </style>
 </head>
 <body>
@@ -169,6 +193,14 @@
     </div>
 
     <div id="isi-undangan">
+
+        <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
+            <img src="https://www.pngmart.com/files/22/Bismillah-Calligraphy-PNG-HD-Isolated.png" alt="Bismillah" style="width: 150px; margin-bottom: 20px; opacity: 0.8;">
+            <p style="font-size: 13px; line-height: 1.8; padding: 0 10px; font-style: italic;">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+            </p>
+            <p style="font-size: 12px; font-weight: bold; color: var(--gold);">(QS. Ar-Rum: 21)</p>
+        </div>
         
         <div class="pamflet pamflet-konten" data-aos="fade-up">
             <div class="sub-judul">THE WEDDING OF</div>
@@ -196,10 +228,48 @@
             <p><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
             <p><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
             
+            <div class="cd-container" id="countdown">
+                <div class="cd-box"><span id="hari">00</span><p>Hari</p></div>
+                <div class="cd-box"><span id="jam">00</span><p>Jam</p></div>
+                <div class="cd-box"><span id="menit">00</span><p>Menit</p></div>
+                <div class="cd-box"><span id="detik">00</span><p>Detik</p></div>
+            </div>
+
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Ryu+%26+Bhetri&dates=20260705T020000Z/20260705T080000Z&details=Acara+Pernikahan+Ryu+%26+Bhetri&location=Jl.+Sumbawa+RT+15.+RW+05+Kec.+Sungai+Serut+Kel.+Sukamerindu.+Kota+Bengkulu" target="_blank" class="btn-aksi" style="background: var(--dark); font-size: 11px; padding: 12px 25px; margin-bottom: 20px;">📅 SIMPAN KE KALENDER</a>
+
             <div class="map-container">
                 <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
+        </div>
+
+        <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
+            <div class="sub-judul">OUR STORY</div>
+            <h2 class="judul-bagian">Kisah Cinta Kami</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Awal Bertemu</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">Maret 2025</p>
+                        <p>Takdir mempertemukan kami dalam sebuah kesempatan yang tak disangka. Berawal dari perkenalan sederhana yang membawa kesan mendalam.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Khitbah (Lamaran)</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">Desember 2025</p>
+                        <p>Dengan niat baik dan keteguhan hati, kami melibatkan keluarga besar untuk saling mengenal dan melangkah ke jenjang yang lebih serius.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Pernikahan</h3>
+                        <p style="font-weight: bold; margin-bottom: 5px;">05 Juli 2026</p>
+                        <p>Hari yang paling dinantikan. Momen dimana kami mengikat janji suci di hadapan Allah dan keluarga untuk hidup menua bersama.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
@@ -244,6 +314,7 @@
     <script>
         AOS.init();
 
+        // Mengambil nama dari URL untuk sapaan tamu
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         if (nama) {
@@ -251,7 +322,6 @@
             elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
         }
 
-        // Variabel untuk audio
         const audio = document.getElementById("lagu-bg");
         const btnAudio = document.getElementById("btn-audio");
 
@@ -262,15 +332,10 @@
 
             document.getElementById("sampul").style.transform = "translateY(-100%)";
             
-            // Putar lagu saat tombol "BUKA UNDANGAN" diklik
             setTimeout(() => {
                 document.getElementById("isi-undangan").style.display = "block";
                 
-                // Mulai memutar audio dan memunculkan tombol
-                audio.play().catch(error => {
-                    console.log("Audio diblokir oleh browser. Error:", error);
-                    alert("Browser memblokir pemutaran otomatis, silakan klik tombol suara di pojok kanan bawah.");
-                });
+                audio.play().catch(error => console.log("Audio play di-block", error));
                 btnAudio.style.display = "flex"; 
                 
                 window.scrollTo(0,0);
@@ -278,7 +343,6 @@
             }, 600);
         }
 
-        // Fungsi untuk toggle play/pause suara
         function toggleAudio() {
             if (audio.paused) {
                 audio.play();
@@ -296,6 +360,29 @@
             navigator.clipboard.writeText(text);
             alert("Nomor rekening disalin!");
         }
+
+        // LOGIKA SCRIPT HITUNG MUNDUR (COUNTDOWN)
+        const countDownDate = new Date("Jul 5, 2026 09:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("hari").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("jam").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("menit").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("detik").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<div style='color: var(--gold); font-size: 16px; font-weight: bold; margin: 20px 0;'>Acara Sedang Berlangsung / Telah Selesai</div>";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
