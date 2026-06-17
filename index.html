@@ -128,7 +128,7 @@
             margin-bottom: 15px; width: 80%;
         }
 
-        /* --- AUDIO BUTTON --- */
+        /* --- AUDIO BUTTON (Tanpa Animasi Putar) --- */
         #btn-audio {
             position: fixed;
             bottom: 30px;
@@ -146,16 +146,11 @@
             display: none; /* Disembunyikan sampai undangan dibuka */
             justify-content: center;
             align-items: center;
-            animation: putar 4s linear infinite;
+            transition: background-color 0.3s ease;
         }
         
         #btn-audio.paused {
-            animation: none;
             background-color: #999;
-        }
-
-        @keyframes putar {
-            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -240,7 +235,7 @@
     </div>
 
     <audio id="lagu-bg" loop>
-        <source src="https://drive.google.com/uc?export=download&id=1m8-1nbC-GTQHKo3jnQ8YiieIeS1Xj6HB" type="audio/mp3">
+        <source src="https://docs.google.com/uc?export=download&id=1m8-1nbC-GTQHKo3jnQ8YiieIeS1Xj6HB" type="audio/mp3">
     </audio>
 
     <button id="btn-audio" onclick="toggleAudio()" title="Matikan/Nyalakan Suara">🔊</button>
@@ -272,7 +267,10 @@
                 document.getElementById("isi-undangan").style.display = "block";
                 
                 // Mulai memutar audio dan memunculkan tombol
-                audio.play().catch(error => console.log("Autoplay dicegah browser, pengunjung harus interaksi manual."));
+                audio.play().catch(error => {
+                    console.log("Audio diblokir oleh browser. Error:", error);
+                    alert("Browser memblokir pemutaran otomatis, silakan klik tombol suara di pojok kanan bawah.");
+                });
                 btnAudio.style.display = "flex"; 
                 
                 window.scrollTo(0,0);
