@@ -127,6 +127,36 @@
             padding: 20px; border-radius: 10px; 
             margin-bottom: 15px; width: 80%;
         }
+
+        /* --- AUDIO BUTTON --- */
+        #btn-audio {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            display: none; /* Disembunyikan sampai undangan dibuka */
+            justify-content: center;
+            align-items: center;
+            animation: putar 4s linear infinite;
+        }
+        
+        #btn-audio.paused {
+            animation: none;
+            background-color: #999;
+        }
+
+        @keyframes putar {
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -209,6 +239,12 @@
 
     </div>
 
+    <audio id="lagu-bg" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1m8-1nbC-GTQHKo3jnQ8YiieIeS1Xj6HB" type="audio/mp3">
+    </audio>
+
+    <button id="btn-audio" onclick="toggleAudio()" title="Matikan/Nyalakan Suara">🔊</button>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
@@ -220,17 +256,41 @@
             elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
         }
 
+        // Variabel untuk audio
+        const audio = document.getElementById("lagu-bg");
+        const btnAudio = document.getElementById("btn-audio");
+
         function bukaUndangan() {
             let elem = document.documentElement;
             if (elem.requestFullscreen) { elem.requestFullscreen(); }
             else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
 
             document.getElementById("sampul").style.transform = "translateY(-100%)";
+            
+            // Putar lagu saat tombol "BUKA UNDANGAN" diklik
             setTimeout(() => {
                 document.getElementById("isi-undangan").style.display = "block";
+                
+                // Mulai memutar audio dan memunculkan tombol
+                audio.play().catch(error => console.log("Autoplay dicegah browser, pengunjung harus interaksi manual."));
+                btnAudio.style.display = "flex"; 
+                
                 window.scrollTo(0,0);
                 AOS.refresh();
             }, 600);
+        }
+
+        // Fungsi untuk toggle play/pause suara
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                btnAudio.innerText = "🔊";
+                btnAudio.classList.remove("paused");
+            } else {
+                audio.pause();
+                btnAudio.innerText = "🔇";
+                btnAudio.classList.add("paused");
+            }
         }
 
         function salinTeks(id) {
