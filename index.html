@@ -131,6 +131,10 @@
 </head>
 <body>
 
+    <audio id="backsound" loop>
+        <source src="https://drive.google.com/file/d/1m8-1nbC-GTQHKo3jnQ8YiieIeS1Xj6HB/view?usp=sharing" type="audio/mpeg">
+    </audio>
+
     <div id="sampul">
         <div class="pamflet pamflet-cover">
             <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
@@ -141,72 +145,6 @@
             </div>
             <button class="btn-aksi btn-buka" onclick="bukaUndangan()">BUKA UNDANGAN</button>
         </div>
-    </div>
-
-    <div id="isi-undangan">
-        
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <div class="sub-judul">THE WEDDING OF</div>
-            <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
-            <p style="font-size: 13px; color: #777;">Putri ke empat dari Alm bapak Zaherundin & Almh Yurmailis</p>
-            <p style="font-size: 24px; font-family: 'Great Vibes'; color: var(--gold); margin: 15px 0;">&</p>
-            <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
-            <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra pertama dari bapak Benyamin & Ibu Zaina</p>
-            
-            <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
-                <p>Spesial Untuk Sahabat Kami:</p>
-                <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
-            </div>
-
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px;">
-                "Assalamu'alaikum Wr Wb<br>Tanpa mengurangi rasa hormat, kami mengundang bapak/ibu/saudara/i untuk menghadiri acara kami."
-            </p>
-        </div>
-
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <div class="sub-judul">SAVE THE DATE</div>
-            <h2 class="judul-bagian">Waktu & Lokasi</h2>
-            <p><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
-            <hr class="hias">
-            <p><strong>Resepsi Pernikahan</strong><br>05 Juli 2026 | Pukul 10.00 WIB</p>
-            <p><strong>Kediaman Mempelai Wanita</strong><br>Jl. Sumbawa RT 15. RW 05 Kec. Sungai Serut Kel. Sukamerindu. Kota Bengkulu</p>
-            
-            <div class="map-container">
-                <iframe src="https://maps.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E&hl=id&z=16&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-            <a href="https://www.google.com/maps?q=3%C2%B047'21.7%22S+102%C2%B016'02.2%22E" target="_blank" class="btn-aksi" style="background: var(--gold);">🗺️ BUKA MAPS</a>
-        </div>
-
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <h2 class="judul-bagian">Tanda Kasih</h2>
-
-            <div class="rekening-box">
-                <p><strong>Bank BSI</strong><br><span id="norek-bsi-bhetri">7278966318</span><br>a.n Bhetri</p>
-                <button onclick="salinTeks('norek-bsi-bhetri')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
-            </div>
-
-            <div class="rekening-box">
-                <p><strong>Bank BSI</strong><br><span id="norek-bsi-ryu">7494411940</span><br>a.n Ryu River Saputra</p>
-                <button onclick="salinTeks('norek-bsi-ryu')" style="cursor:pointer; background:none; border: 1px solid var(--gold); font-size: 11px; padding: 8px 15px; border-radius: 5px;">SALIN REKENING</button>
-            </div>
-
-            <div style="background: #fdfaf0; padding: 20px; border-radius: 10px; font-size: 13px; font-style: italic; margin-top: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); text-align: left; width: 80%;">
-                "Bārakallāhu laka, wa bāraka ‘alaika, wa jama‘a bainakumā fī khair."<br>
-                <small>(Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, serta semoga Allah mempersatukan kalian berdua dalam kebaikan.) - HR. Abu Daud</small>
-            </div>
-        </div>
-
-        <div class="pamflet pamflet-konten" data-aos="fade-up">
-            <h2 class="judul-bagian">Terima Kasih</h2>
-            <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
-                "Tiada yang dapat kami ungkapkan selain rasa terima kasih dari hati yang tulus Apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami."
-            </p>
-            <p style="font-size: 13px; font-weight: bold;">
-                Jazakumullah Khairan Katsira<br>Wassalamu'alaikum Warahmatullahi Wabarakatuh
-            </p>
-            <h2 class="judul-bagian" style="margin-top: 30px;">Bhetri & Ryu</h2>
-        </div>
-
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -221,6 +159,10 @@
         }
 
         function bukaUndangan() {
+            // FUNGSI UNTUK MEMUTAR AUDIO
+            const audio = document.getElementById("backsound");
+            audio.play().catch(error => console.log("Autoplay dicegah browser"));
+
             let elem = document.documentElement;
             if (elem.requestFullscreen) { elem.requestFullscreen(); }
             else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
