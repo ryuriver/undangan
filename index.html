@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Ryu & Bhetri</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
             --gold: #c5a059;
             --cream: #ffffff;
-            --bg-page: #f4f4f4;
+            --bg-page: #fdfaf0; /* Warna cream yang lebih hangat */
             --bg-landing: #e2e7d8;
             --dark: #4a4a4a;
         }
@@ -21,6 +21,8 @@
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-page);
+            /* Menambahkan tekstur kertas pada background agar tidak polos */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             color: var(--dark);
             overflow-x: hidden;
         }
@@ -32,10 +34,30 @@
             border: 15px solid white;
             outline: 1px solid var(--gold);
             outline-offset: -10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
             padding: 40px 25px;
             box-sizing: border-box;
             position: relative;
+            overflow: hidden; /* Menjaga bunga tidak keluar batas box */
+        }
+
+        /* --- DEKORASI BUNGA SUDUT --- */
+        .bunga-kiri-atas {
+            position: absolute;
+            top: -10px; left: -10px;
+            width: 150px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+        .bunga-kanan-bawah {
+            position: absolute;
+            bottom: -10px; right: -10px;
+            width: 150px;
+            transform: rotate(180deg); /* Memutar gambar bunga untuk sudut bawah */
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.9;
         }
 
         /* --- SAMPUL --- */
@@ -72,8 +94,17 @@
             border-radius: 10px;
             width: 75%;
         }
-        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; }
+        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; line-height: 1.5; }
         .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
+
+        /* TEKS ARAB */
+        .teks-arab {
+            font-family: 'Amiri', serif;
+            font-size: 24px;
+            color: var(--dark);
+            margin: 15px 0 10px 0;
+            font-weight: normal;
+        }
 
         /* --- BUTTONS --- */
         .btn-aksi {
@@ -182,6 +213,9 @@
 
     <div id="sampul">
         <div class="pamflet pamflet-cover">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <div class="sub-judul">UNDANGAN PERNIKAHAN</div>
             <h1>Ryu & Bhetri</h1>
             <div class="kotak-tamu">
@@ -195,6 +229,9 @@
     <div id="isi-undangan">
         
         <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <div class="sub-judul">THE WEDDING OF</div>
             <h2 class="judul-bagian">Bhetri Yurmarlina, S.Pd.</h2>
             <p style="font-size: 13px; color: #777;">Putri Ke-empat dari Bapak Zaherudin (Rahimahullah) & Ibu Yurmailis (Rahimahallah)</p>
@@ -203,16 +240,21 @@
             <p style="font-size: 13px; color: #777; margin-bottom: 30px;">Putra Pertama dari Bapak Benyamin & Ibu Zaina Dayana</p>
             
             <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
-                <p>Spesial Untuk Sahabat Kami:</p>
+                <p>Spesial Untuk Sahabat Kami : <br>Bapak/Ibu/Saudara/i</p>
                 <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
             </div>
 
+            <h3 class="teks-arab">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h3>
+
             <p style="font-size: 13px; line-height: 1.8; padding: 0 20px;">
-                "Assalamu'alaikum Wr Wb<br>Tanpa mengurangi rasa hormat, kami mengundang bapak/ibu/saudara/i untuk menghadiri acara kami."
+                "Assalamu'alaikum Warahmatullahi Wabarakatuh<br>Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara kami."
             </p>
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <div class="sub-judul">SAVE THE DATE</div>
             <h2 class="judul-bagian">Waktu & Lokasi</h2>
             <p><strong>Akad Nikah</strong><br>05 Juli 2026 | Pukul 09.00 WIB</p>
@@ -236,27 +278,30 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <h2 class="judul-bagian">Our Story</h2>
             
             <div class="timeline">
                 <div class="timeline-item left" data-aos="fade-right">
                     <div class="timeline-content">
                         <h3>Nazhor & Taaruf</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">April</p>
+                        <p style="font-weight: bold; margin-bottom: 5px;">April 2025</p>
                         <p>Saat itu kami memulai perkenalan dari media taaruf dan merasa ada kecocokan, akhirnya memutuskan untuk nadzor.</p>
                     </div>
                 </div>
                 <div class="timeline-item right" data-aos="fade-left">
                     <div class="timeline-content">
                         <h3>Khitbah</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">31 Mei</p>
+                        <p style="font-weight: bold; margin-bottom: 5px;">31 Mei 2025</p>
                         <p>Dengan berbagai pertimbangan yang matang dan mengharap ridho Allah Azza wa Jalla, akhirnya khitbah menjadi jalan kami untuk menuju jenjang yang lebih serius.</p>
                     </div>
                 </div>
                 <div class="timeline-item left" data-aos="fade-right">
                     <div class="timeline-content">
                         <h3>Akad & Resepsi</h3>
-                        <p style="font-weight: bold; margin-bottom: 5px;">5 Juli</p>
+                        <p style="font-weight: bold; margin-bottom: 5px;">5 Juli 2026</p>
                         <p>Semoga ini menjadi jalan terbaik yang Allah tetapkan untuk menggapai ridho-Nya.</p>
                     </div>
                 </div>
@@ -264,6 +309,9 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <h2 class="judul-bagian">Tanda Kasih</h2>
 
             <div class="rekening-box">
@@ -283,6 +331,9 @@
         </div>
 
         <div class="pamflet pamflet-konten" data-aos="fade-up">
+            <img src="bunga.png" class="bunga-kiri-atas" alt="">
+            <img src="bunga.png" class="bunga-kanan-bawah" alt="">
+
             <h2 class="judul-bagian">Terima Kasih</h2>
             <p style="font-size: 13px; line-height: 1.8; padding: 0 20px; margin-bottom: 20px;">
                 "Tiada yang dapat kami ungkapkan selain rasa terima kasih dari hati yang tulus Apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan do'a restu kepada kami."
@@ -351,7 +402,6 @@
             alert("Nomor rekening disalin!");
         }
 
-        // LOGIKA SCRIPT HITUNG MUNDUR (COUNTDOWN)
         const countDownDate = new Date("Jul 5, 2026 09:00:00").getTime();
 
         const x = setInterval(function() {
