@@ -20,7 +20,6 @@
         body {
             margin: 0; padding: 0;
             font-family: 'Montserrat', sans-serif;
-            /* Background diperbagus dengan Gradasi Elegan dipadukan tekstur kertas */
             background: linear-gradient(135deg, #f4e8d1 0%, #e2e7d8 100%);
             background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             background-attachment: fixed;
@@ -39,7 +38,7 @@
             padding: 40px 25px;
             box-sizing: border-box;
             position: relative;
-            overflow: hidden; /* Menjaga bunga tidak keluar batas box */
+            overflow: hidden;
         }
 
         /* --- DEKORASI BUNGA SUDUT --- */
@@ -47,7 +46,6 @@
             position: absolute;
             bottom: -10px; left: -10px;
             width: 150px;
-            /* Tidak ada rotasi karena gambar sudah didesain untuk kiri bawah */
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
@@ -56,19 +54,21 @@
             position: absolute;
             top: -10px; right: -10px;
             width: 150px;
-            transform: rotate(180deg); /* Memutar gambar 180 derajat ke sudut kanan atas */
+            transform: rotate(180deg);
             z-index: 10;
             pointer-events: none;
             opacity: 0.9;
         }
 
-        /* --- SAMPUL --- */
+        /* =========================================
+           --- SAMPUL (MENGIKUTI REFERENSI BARU) ---
+           ========================================= */
         #sampul {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
-            /* Cover diberi gradasi mewah */
-            background: radial-gradient(circle, #fdfaf0 0%, #e2e7d8 100%);
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            /* Latar belakang layar penuh dibuat kontras agar kartu menonjol */
+            background: linear-gradient(135deg, #c3cdb4 0%, #e2e7d8 100%);
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,43 +76,111 @@
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        .pamflet-cover {
-            width: 100%; 
-            height: 100vh; 
-            max-width: 500px;
+        .cover-card {
+            width: 85%; 
+            height: 85vh; 
+            max-width: 420px;
+            background-color: #fdfaf0;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            overflow: hidden;
         }
 
-        #sampul h1 { font-family: 'Great Vibes', cursive; color: var(--gold); margin: 0; }
-        .sub-judul { letter-spacing: 4px; font-size: 11px; font-weight: 600; color: #8a8a8a; }
+        /* Garis putih frame melengkung seperti referensi */
+        .inner-frame {
+            position: absolute;
+            top: 15px; bottom: 15px; left: 15px; right: 15px;
+            border: 2px solid white;
+            border-radius: 120px 120px 15px 15px; /* Lengkungan klasik di atas */
+            z-index: 5;
+            pointer-events: none;
+        }
 
-        .kotak-tamu {
-            margin: 30px 0;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            background: rgba(255,255,255,0.8);
-            border-radius: 10px;
-            width: 75%;
-            position: relative;
+        .monogram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-family: 'Amiri', serif;
+            font-size: 45px;
+            color: var(--dark);
+            margin-bottom: 25px;
             z-index: 15;
         }
-        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; line-height: 1.5; }
-        .kotak-tamu span { display: block; font-size: 22px; font-weight: bold; color: var(--dark); margin-top: 8px; }
+        
+        .monogram .vert-line {
+            width: 1px;
+            height: 45px;
+            background-color: var(--dark);
+        }
 
-        /* TEKS ARAB */
-        .teks-arab {
-            font-family: 'Amiri', serif;
-            font-size: 24px;
-            color: var(--dark);
-            margin: 15px 0 10px 0;
+        .cover-card .sub-judul { 
+            letter-spacing: 3px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            color: var(--dark); 
+            z-index: 15; 
+            margin-bottom: 5px;
+        }
+
+        .nama-cover { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 55px; 
+            color: var(--dark); /* Disamakan gelap seperti referensi */
+            margin: 0 0 35px 0; 
+            z-index: 15;
             font-weight: normal;
         }
 
-        /* --- BUTTONS --- */
+        .guest-section {
+            z-index: 15;
+            margin-bottom: 35px;
+        }
+        
+        .guest-section p { 
+            margin: 0 0 8px 0; 
+            font-size: 12px; 
+            color: var(--dark); 
+        }
+        
+        .guest-section .nama-tamu-display { 
+            display: block; 
+            font-family: 'Amiri', serif;
+            font-size: 22px; 
+            font-weight: bold; 
+            color: var(--dark); 
+        }
+
+        /* --- BUTTONS SAMPUL --- */
+        .btn-buka-cover {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--dark), #2a2a2a);
+            color: white;
+            text-decoration: none;
+            border: 2px solid var(--gold); /* Frame emas di tombol */
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            z-index: 15;
+            animation: pulse 2s infinite;
+        }
+
+        /* =========================================
+           --- LANJUTAN ISI UNDANGAN BAWAAN ---
+           ========================================= */
         .btn-aksi {
             display: inline-block;
             padding: 14px 35px;
@@ -129,14 +197,13 @@
             position: relative;
             z-index: 15;
         }
-        .btn-buka { animation: pulse 2s infinite; }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
 
-        /* --- ISI UNDANGAN --- */
         #isi-undangan {
             display: none;
             max-width: 600px;
@@ -150,24 +217,43 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            margin-bottom: 25px; /* Jarak antar pamflet agak diperlebar sedikit */
+            margin-bottom: 25px; 
         }
 
         .judul-bagian { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); margin-bottom: 20px; }
         hr.hias { border: 0; border-top: 1px solid var(--gold); width: 60px; margin: 25px auto; }
 
-        /* --- MAP DIPERBAIKI --- */
+        .teks-arab {
+            font-family: 'Amiri', serif;
+            font-size: 24px;
+            color: var(--dark);
+            margin: 15px 0 10px 0;
+            font-weight: normal;
+        }
+
+        .kotak-tamu {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid var(--gold);
+            border-radius: 10px;
+            width: auto;
+            position: relative;
+            z-index: 15;
+        }
+        .kotak-tamu p { margin: 0; font-size: 11px; color: #999; text-transform: uppercase; line-height: 1.5; }
+        .kotak-tamu span { display: block; font-size: 18px; font-weight: bold; color: var(--dark); margin-top: 8px; }
+
         .map-container { 
-            width: 85%; /* Lebar dikecilkan agar tidak menabrak bunga */
+            width: 85%; 
             max-width: 400px;
-            height: 250px; /* Tinggi disesuaikan */
-            margin: 20px auto; /* Membuat posisi ke tengah */
+            height: 250px; 
+            margin: 20px auto; 
             border-radius: 10px; 
             overflow: hidden; 
-            border: 2px solid #f2e7d3; /* Border disesuaikan agar nyambung dengan tema */
+            border: 2px solid #f2e7d3; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             position: relative;
-            z-index: 15; /* Menjaga map berada di atas bunga jika bersentuhan */
+            z-index: 15; 
         }
 
         .rekening-box {
@@ -179,7 +265,6 @@
             background: rgba(255, 255, 255, 0.7);
         }
 
-        /* --- HITUNG MUNDUR (COUNTDOWN) --- */
         .cd-container {
             display: flex; justify-content: center; gap: 12px; margin: 25px 0;
             position: relative; z-index: 15;
@@ -191,7 +276,6 @@
         .cd-box span { display: block; font-size: 24px; font-weight: bold; }
         .cd-box p { margin: 5px 0 0 0; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- TIMELINE (OUR STORY) --- */
         .timeline { position: relative; max-width: 100%; margin: 20px auto; padding: 0 20px; z-index: 15; }
         .timeline::after {
             content: ''; position: absolute; width: 2px; background-color: var(--gold);
@@ -220,7 +304,6 @@
             .right { left: 0; }
         }
 
-        /* --- AUDIO BUTTON --- */
         #btn-audio {
             position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
             background-color: var(--gold); color: white; border: none; border-radius: 50%;
@@ -234,23 +317,30 @@
 <body>
 
     <div id="sampul">
-        <div class="pamflet pamflet-cover">
+        <div class="cover-card">
+            
+            <div class="inner-frame"></div>
+            
             <img src="bunga.png" class="bunga-kiri-bawah" alt="">
             <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
-            <div class="sub-judul" style="margin-bottom: 20px;">UNDANGAN PERNIKAHAN</div>
-            
-            <h1 style="font-size: 55px; line-height: 0.8;">Ryu</h1>
-            <h1 style="font-size: 35px; color: #999; margin: 10px 0;">&</h1>
-            <h1 style="font-size: 55px; line-height: 0.8;">Bhetri</h1>
-            
-            <hr style="width: 50px; border: 0; border-top: 1px solid var(--gold); margin: 25px auto 10px auto;">
+            <div class="monogram">
+                <span>R</span> <div class="vert-line"></div> <span>B</span>
+            </div>
 
-            <div class="kotak-tamu">
-                <p>Kepada Yth. Bapak/Ibu/Sdr/i:</p>
+            <div class="sub-judul">WEDDING INVITATION</div>
+            
+            <h1 class="nama-cover">Ryu & Bhetri</h1>
+            
+            <div class="guest-section">
+                <p>Kepada Bapak/Ibu/Saudara/i :</p>
                 <span class="nama-tamu-display">Tamu Spesial</span>
             </div>
-            <button class="btn-aksi btn-buka" onclick="bukaUndangan()">BUKA UNDANGAN</button>
+            
+            <button class="btn-buka-cover" onclick="bukaUndangan()">
+                ✉ BUKA UNDANGAN
+            </button>
+            
         </div>
     </div>
 
@@ -269,9 +359,9 @@
             <h2 class="judul-bagian">Ryu River Saputra, S.Kom.</h2>
             <p style="font-size: 13px; color: #777; margin-bottom: 30px; position: relative; z-index: 15;">Putra Pertama dari Bapak Benyamin & Ibu Zaina Dayana</p>
             
-            <div class="kotak-tamu" style="width: auto; background: none; border-color: var(--gold);">
+            <div class="kotak-tamu">
                 <p>Spesial Untuk Sahabat Kami : <br>Bapak/Ibu/Saudara/i</p>
-                <span class="nama-tamu-display" style="font-size: 18px;">Tamu Spesial</span>
+                <span class="nama-tamu-display">Tamu Spesial</span>
             </div>
 
             <h3 class="teks-arab" style="position: relative; z-index: 15;">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h3>
