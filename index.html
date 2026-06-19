@@ -61,7 +61,7 @@
         }
 
         /* =========================================
-           --- SAMPUL (MENGIKUTI REFERENSI BARU) ---
+           --- SAMPUL ---
            ========================================= */
         #sampul {
             position: fixed;
@@ -289,6 +289,62 @@
             .right { left: 0; }
         }
 
+        /* --- STYLE BARU UNTUK BUKU TAMU --- */
+        .input-form {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #c5a059;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
+        }
+        .input-form:focus {
+            outline: none;
+            border-color: var(--dark);
+            box-shadow: 0 0 5px rgba(197, 160, 89, 0.5);
+        }
+        .komentar-scroll {
+            width: 100%;
+            max-width: 450px;
+            margin-top: 25px;
+            max-height: 350px; /* Batas tinggi scroll */
+            overflow-y: auto;
+            text-align: left;
+            position: relative;
+            z-index: 15;
+            padding-right: 10px;
+        }
+        /* Custom scrollbar untuk kotak komentar */
+        .komentar-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .komentar-scroll::-webkit-scrollbar-track {
+            background: #fdfaf0;
+            border-radius: 4px;
+        }
+        .komentar-scroll::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+        .item-komentar {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .item-komentar h4 { margin: 0 0 5px 0; font-size: 14px; color: var(--dark); display: flex; align-items: center; gap: 8px; }
+        .item-komentar .badge { font-size: 10px; padding: 3px 8px; border-radius: 20px; font-weight: normal;}
+        .item-komentar .badge.hadir { background: #e2e7d8; color: #4a6a3b; border: 1px solid #c3cdb4;}
+        .item-komentar .badge.absen { background: #fae8e8; color: #a34848; border: 1px solid #eebaba;}
+        .item-komentar .waktu { font-size: 10px; color: #a9a9a9; display: block; margin-top: 2px; }
+        .item-komentar p { margin: 8px 0 0 0; font-size: 12px; line-height: 1.6; color: #555; }
+
         /* --- STYLE BARU UNTUK HIMBAUAN TAMU --- */
         .himbauan-container {
             display: flex;
@@ -310,7 +366,7 @@
         .himbauan-icon {
             width: 65px;
             height: 65px;
-            background-color: #e2e7d8; /* Warna hijau soft pastel agar matching */
+            background-color: #e2e7d8;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -461,6 +517,29 @@
             <img src="bunga.png" class="bunga-kiri-bawah" alt="">
             <img src="bunga.png" class="bunga-kanan-atas" alt="">
 
+            <h2 class="judul-bagian">Wedding Wish</h2>
+            <p style="font-size: 13px; color: #777; margin-bottom: 25px; position: relative; z-index: 15;">Kirimkan doa dan harapan terbaik untuk kami.</p>
+
+            <form id="form-bukutamu" style="width: 100%; max-width: 450px; position: relative; z-index: 15; text-align: left;">
+                <input type="text" id="nama" name="nama" placeholder="Nama Anda" required class="input-form">
+                <select id="kehadiran" name="kehadiran" required class="input-form">
+                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+                <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis ucapan & doa..." required class="input-form"></textarea>
+                <button type="submit" id="btn-kirim" class="btn-aksi" style="width: 100%; border-radius: 8px;">Kirim Ucapan</button>
+            </form>
+
+            <div id="tempat-komentar" class="komentar-scroll">
+                <p id="loading-komentar" style="text-align: center; font-size: 12px; color: #999;">Memuat ucapan teman-teman...</p>
+                </div>
+        </div>
+
+        <div class="pamflet pamflet-konten" data-aos="fade-up" style="min-height: auto; padding: 60px 25px;">
+            <img src="bunga.png" class="bunga-kiri-bawah" alt="">
+            <img src="bunga.png" class="bunga-kanan-atas" alt="">
+
             <div style="background-color: rgba(255,255,255,0.8); padding: 10px 20px; border-radius: 20px; margin-bottom: 25px; position: relative; z-index: 15; font-weight: bold; font-size: 14px; color: var(--dark); border: 1px solid #e2e7d8;">
                 Tanpa mengurangi rasa hormat kami
             </div>
@@ -517,10 +596,14 @@
         AOS.init();
 
         const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('to');
-        if (nama) {
+        const namaTamu = urlParams.get('to');
+        if (namaTamu) {
             const elements = document.querySelectorAll('.nama-tamu-display');
-            elements.forEach(el => el.innerText = nama.replace(/\+/g, ' '));
+            elements.forEach(el => el.innerText = namaTamu.replace(/\+/g, ' '));
+            
+            // Auto isi form nama di buku tamu jika ada parameter nama
+            const inputNama = document.getElementById('nama');
+            if (inputNama) inputNama.value = namaTamu.replace(/\+/g, ' ');
         }
 
         const audio = document.getElementById("lagu-bg");
@@ -541,6 +624,9 @@
                 
                 window.scrollTo(0,0);
                 AOS.refresh();
+
+                // Muat komentar ketika undangan dibuka
+                loadKomentar();
             }, 600);
         }
 
@@ -577,6 +663,75 @@
                 document.getElementById("countdown").innerHTML = "<div style='color: var(--gold); font-size: 16px; font-weight: bold; margin: 20px 0;'>Acara Sedang Berlangsung / Telah Selesai</div>";
             }
         }, 1000);
+
+        // =========================================
+        // SCRIPT BUKU TAMU (GOOGLE SHEETS)
+        // =========================================
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwVu3VyJD95Zpa49BIcWMIOMBG08BXCT42WOp_yUSyca4g7SBQJ876S4HQ4Mq9qm83WsQ/exec';
+        const form = document.getElementById('form-bukutamu');
+        const btnKirim = document.getElementById('btn-kirim');
+
+        // Fungsi Kirim Form ke Spreadsheets
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnKirim.innerText = 'Mengirim...';
+            btnKirim.disabled = true;
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    btnKirim.innerText = 'Kirim Ucapan';
+                    btnKirim.disabled = false;
+                    form.reset();
+                    if (namaTamu) document.getElementById('nama').value = namaTamu.replace(/\+/g, ' '); // Kembalikan nama bawaan jika ada
+                    
+                    alert('Terima kasih! Ucapan Anda telah berhasil terkirim.');
+                    loadKomentar(); // Refresh list komentar setelah kirim
+                })
+                .catch(error => {
+                    btnKirim.innerText = 'Kirim Ucapan';
+                    btnKirim.disabled = false;
+                    alert('Gagal mengirim ucapan, pastikan koneksi internet stabil lalu coba lagi.');
+                    console.error('Error!', error.message);
+                });
+        });
+
+        // Fungsi Load Komentar (Akan bekerja jika Script GS mendukung GET method return JSON)
+        function loadKomentar() {
+            const container = document.getElementById('tempat-komentar');
+            
+            fetch(scriptURL)
+                .then(res => res.json())
+                .then(data => {
+                    container.innerHTML = ''; // Bersihkan container
+                    if(data && data.length > 0) {
+                        // Data terbaru di atas
+                        data.reverse().forEach(item => {
+                            // Asumsi properti dari G-Sheets: nama, kehadiran, pesan, timestamp
+                            let nama = item.nama || item.Nama || 'Tamu';
+                            let kehadiran = item.kehadiran || item.Kehadiran || '';
+                            let pesan = item.pesan || item.Pesan || '';
+                            let waktu = item.timestamp || item.Timestamp || 'Baru saja';
+                            
+                            let badgeClass = (kehadiran.toLowerCase() === 'hadir') ? 'badge hadir' : 'badge absen';
+                            let badgeHTML = kehadiran ? `<span class="${badgeClass}">${kehadiran}</span>` : '';
+
+                            container.innerHTML += `
+                                <div class="item-komentar">
+                                    <h4>${nama} ${badgeHTML}</h4>
+                                    <span class="waktu">${waktu}</span>
+                                    <p>${pesan}</p>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        container.innerHTML = '<p style="text-align:center; font-size:12px; color: #999;">Belum ada ucapan. Jadilah yang pertama!</p>';
+                    }
+                })
+                .catch(err => {
+                    container.innerHTML = '<p style="text-align:center; font-size:12px; color: #999;">Komentar akan muncul segera setelah Anda mengirimkan ucapan.</p>';
+                    console.error('Info: Script mungkin belum mendukung baca data (GET JSON), tidak apa-apa form kirim tetap berfungsi.', err);
+                });
+        }
     </script>
 </body>
 </html>
